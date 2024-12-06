@@ -46,6 +46,9 @@ const AppRoutes = () => {
         <Route path="/reset" element={<ResetPasswordPage />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/ventas" element={<Ventas />} />
+        <Route path="/clients" element={<ClienteForm onMetodoPagoSeleccionado={handleMetodoPagoSeleccionado} />} />
+
+
 
         
 
@@ -112,14 +115,6 @@ const AppRoutes = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-        path="/clients"
-        element={
-          <ProtectedRoute allowedRoles={['admin', 'user']}>
-            <ClienteForm onMetodoPagoSeleccionado={handleMetodoPagoSeleccionado} />
-          </ProtectedRoute>
-        }
-      />
 
         <Route
           path="/menu"
