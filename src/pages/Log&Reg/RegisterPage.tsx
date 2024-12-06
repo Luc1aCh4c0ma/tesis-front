@@ -25,7 +25,7 @@ const RegisterPage: React.FC = () => {
   
     const onSubmit = async (data: any) => {
       try {
-        await axios.post('http://localhost:3000/auth/register', data);
+        await axios.post('https://tesis-back-production-8e0c.up.railway.app/auth/register', data);
         alert('Registro exitoso. Ahora puedes iniciar sesión.');
       } catch (error: any) {
         alert('Error en el registro: ' + error.response?.data?.message || 'Error desconocido');

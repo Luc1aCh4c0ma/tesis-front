@@ -35,7 +35,7 @@ const GestionMozos: React.FC = () => {
 
   const fetchMozos = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/mozos');
+      const response = await axios.get('https://tesis-back-production-8e0c.up.railway.app/mozos');
       setMozos(response.data);
     } catch (error) {
       console.error('Error al obtener mozos:', error);
@@ -71,7 +71,7 @@ const GestionMozos: React.FC = () => {
     formData.append('imagen', file);
 
     try {
-      const response = await axios.post('http://localhost:3000/mozos', formData, {
+      const response = await axios.post('https://tesis-back-production-8e0c.up.railway.app/mozos', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setMozos((prev) => [...prev, response.data]);
@@ -85,7 +85,7 @@ const GestionMozos: React.FC = () => {
   const deleteMozo = async (id: number) => {
     if (window.confirm('¿Estás seguro de que deseas eliminar este mozo?')) {
       try {
-        await axios.delete(`http://localhost:3000/mozos/${id}`);
+        await axios.delete(`https://tesis-back-production-8e0c.up.railway.app/mozos/${id}`);
         setMozos((prev) => prev.filter((mozo) => mozo.id !== id));
       } catch (error) {
         console.error('Error al eliminar mozo:', error);
@@ -108,7 +108,7 @@ const GestionMozos: React.FC = () => {
 
     try {
       const response = await axios.patch(
-        `http://localhost:3000/mozos/${mozoEditable.id}`,
+        `https://tesis-back-production-8e0c.up.railway.app/mozos/${mozoEditable.id}`,
         formData,
         {
           headers: { 'Content-Type': 'multipart/form-data' },
@@ -141,7 +141,7 @@ const GestionMozos: React.FC = () => {
                 <Typography variant="h6">{mozo.nombre}</Typography>
                 <Typography>{mozo.descripcion}</Typography>
                 <img
-                  src={`http://localhost:3000${mozo.imagen}`}
+                  src={`https://tesis-back-production-8e0c.up.railway.app${mozo.imagen}`}
                   alt={mozo.nombre}
                 />
 

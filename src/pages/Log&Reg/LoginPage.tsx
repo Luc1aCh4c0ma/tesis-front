@@ -26,7 +26,7 @@ const LoginPage: React.FC = () => {
   const onSubmit = async (data: any) => {
     try {
       // Enviar los datos del login y el rol seleccionado
-      const response = await axios.post('http://localhost:3000/auth/login', {
+      const response = await axios.post('https://tesis-back-production-8e0c.up.railway.app/auth/login', {
         email: data.email,
         password: data.password
       });

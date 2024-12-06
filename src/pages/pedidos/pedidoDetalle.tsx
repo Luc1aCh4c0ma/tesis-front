@@ -28,7 +28,7 @@ const DetallePedido: React.FC = () => {
     const fetchDetallePedido = async () => {
       try {
         setError(null);
-        const response = await axios.get(`http://localhost:3000/pedidos/detalle/${pedidoId}`);
+        const response = await axios.get(`https://tesis-back-production-8e0c.up.railway.app/pedidos/detalle/${pedidoId}`);
         setPedido(response.data);
       } catch (error) {
         console.error("Error al obtener detalles del pedido:", error);
@@ -65,7 +65,7 @@ const DetallePedido: React.FC = () => {
   const generarTicket = async () => {
     try {
       const total = calcularTotal();
-      await axios.post(`http://localhost:3000/tickets`, {
+      await axios.post(`https://tesis-back-production-8e0c.up.railway.app/tickets`, {
         pedidoId: pedido.id,
         total, // Total calculado en el frontend
       });

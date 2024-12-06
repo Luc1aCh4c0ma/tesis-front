@@ -6,7 +6,7 @@ export interface Categoria {
   nombre: string;
 }
 
-const BASE_URL = 'http://localhost:3000/categorias';
+const BASE_URL = 'https://tesis-back-production-8e0c.up.railway.app/categorias';
 
 export const CategoriaService = {
     async obtenerCategorias(): Promise<Categoria[]> {

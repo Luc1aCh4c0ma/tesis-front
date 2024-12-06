@@ -23,7 +23,7 @@ const AddSupplierOrder = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/supplier-orders', {
+      const response = await fetch('https://tesis-back-production-8e0c.up.railway.app/supplier-orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

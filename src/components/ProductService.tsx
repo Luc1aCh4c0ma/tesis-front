@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/products';
+const API_URL = 'https://tesis-back-production-8e0c.up.railway.app/products';
 
 export const createProduct = async (productData: FormData) => {
   return axios.post(API_URL, productData, {

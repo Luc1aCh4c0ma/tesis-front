@@ -17,7 +17,7 @@ const PedidosHistorial: React.FC = () => {
   useEffect(() => {
     const fetchHistorialPedidos = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/pedidos");
+        const response = await axios.get("https://tesis-back-production-8e0c.up.railway.app/pedidos");
         setPedidos(response.data);
         setFilteredPedidos(response.data); // Inicialmente, muestra todos los pedidos
       } catch (error) {
@@ -33,17 +33,17 @@ const PedidosHistorial: React.FC = () => {
   };
 
   const descargarTicket = (pedidoId: number) => {
-    window.open(`http://localhost:3000/tickets/${pedidoId}`, '_blank');
+    window.open(`https://tesis-back-production-8e0c.up.railway.app/tickets/${pedidoId}`, '_blank');
   };
 
   const enviarWhatsApp = (pedidoId: number) => {
-    const url = `http://localhost:3000/tickets/${pedidoId}`;
+    const url = `https://tesis-back-production-8e0c.up.railway.app/tickets/${pedidoId}`;
     const message = `Hola, aquí tienes tu ticket del Pedido ID: ${pedidoId} - ${url}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const enviarEmail = (pedidoId: number) => {
-    const url = `http://localhost:3000/tickets/${pedidoId}`;
+    const url = `https://tesis-back-production-8e0c.up.railway.app/tickets/${pedidoId}`;
     const subject = `Ticket del Pedido ID: ${pedidoId}`;
     const body = `Hola, aquí tienes el enlace para descargar tu ticket del Pedido ID: ${pedidoId}\n\n${url}`;
     window.open(`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');

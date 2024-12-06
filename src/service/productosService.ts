@@ -12,7 +12,7 @@ export interface Producto {
 
 export const obtenerProductos = async (categoriaId?: number): Promise<Producto[]> => {
   try {
-    const response = await axios.get('http://localhost:3000/productos', {
+    const response = await axios.get('https://tesis-back-production-8e0c.up.railway.app/productos', {
       params: { categoriaId },
     });
     return response.data;

@@ -15,7 +15,7 @@ const Ventas: React.FC = () => {
   useEffect(() => {
     const fetchPedidos = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/pedidos");
+        const response = await axios.get("https://tesis-back-production-8e0c.up.railway.app/pedidos");
         setPedidos(response.data);
         calcularVentas(response.data);
       } catch (error) {

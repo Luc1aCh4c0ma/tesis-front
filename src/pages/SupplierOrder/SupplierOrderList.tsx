@@ -9,7 +9,7 @@ const SupplierOrderList = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost:3000/supplier-orders');
+      const response = await fetch('https://tesis-back-production-8e0c.up.railway.app/supplier-orders');
       const data = await response.json();
       setOrders(data);
     } catch (error) {
@@ -19,7 +19,7 @@ const SupplierOrderList = () => {
 
   const markAsReceived = async (id: number) => {
     try {
-      await fetch(`http://localhost:3000/supplier-orders/${id}/received`, {
+      await fetch(`https://tesis-back-production-8e0c.up.railway.app/${id}/received`, {
         method: 'PATCH',
       });
       fetchOrders(); // Refrescar la lista

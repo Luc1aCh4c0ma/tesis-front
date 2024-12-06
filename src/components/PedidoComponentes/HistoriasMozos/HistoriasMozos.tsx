@@ -18,7 +18,7 @@ const HistoriasMozos: React.FC = () => {
   const [error, setError] = useState<string | null>(null); // Tipamos el error como string o null
 
   useEffect(() => {
-    fetch("http://localhost:3000/mozos")
+    fetch("https://tesis-back-production-8e0c.up.railway.app/mozos")
       .then((response) => response.json())
       .then((data: Mozo[]) => { // Ahora reconocemos que `data` es un array
         console.log("Respuesta del servidor:", data);
@@ -67,7 +67,7 @@ const HistoriasMozos: React.FC = () => {
             className="historias-mozos-item"
           >
             <img
-              src={`http://localhost:3000${mozo.imagen}`} // Ruta completa del backend
+              src={`https://tesis-back-production-8e0c.up.railway.app${mozo.imagen}`} // Ruta completa del backend
               alt={mozo.nombre}
               className="historias-mozos-imagen"
               onError={(e) => {
@@ -90,7 +90,7 @@ const HistoriasMozos: React.FC = () => {
           {mozoSeleccionado && (
             <Paper elevation={3} style={{ padding: "20px", textAlign: "center" }}>
               <img
-                src={`http://localhost:3000${mozoSeleccionado.imagen}`} // Ruta completa del backend
+                src={`https://tesis-back-production-8e0c.up.railway.app${mozoSeleccionado.imagen}`} // Ruta completa del backend
                 alt={mozoSeleccionado.nombre}
                 className="historias-mozos-modal-imagen"
                 onError={(e) => {

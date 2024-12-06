@@ -44,7 +44,7 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
     console.log('Datos enviados al backend:', pedido);
   
     try {
-      const response = await axios.post('http://localhost:3000/pedidos', pedido);
+      const response = await axios.post('https://tesis-back-production-8e0c.up.railway.app/pedidos', pedido);
       onPedidoConfirmado(response.data); // Confirma el pedido
       setModalAbierto(true); // Abre un modal de confirmación
     } catch (error) {

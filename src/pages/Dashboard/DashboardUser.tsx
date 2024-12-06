@@ -12,7 +12,7 @@ const PedidosPendientes: React.FC = () => {
   useEffect(() => {
     const fetchPedidosPendientes = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/pedidos/pendiente");
+        const response = await axios.get("https://tesis-back-production-8e0c.up.railway.app/pedidos/pendiente");
         setPedidos(response.data);
       } catch (error) {
         console.error("Error al obtener pedidos pendientes:", error);
@@ -28,7 +28,7 @@ const PedidosPendientes: React.FC = () => {
 
   const marcarComoEntregado = async (pedidoId: number) => {
     try {
-      await axios.put(`http://localhost:3000/pedidos/${pedidoId}/entregado`);
+      await axios.put(`https://tesis-back-production-8e0c.up.railway.app/pedidos/${pedidoId}/entregado`);
       setPedidos((prevPedidos) => prevPedidos.filter((pedido) => pedido.id !== pedidoId));
     } catch (error) {
       console.error("Error al marcar pedido como entregado:", error);

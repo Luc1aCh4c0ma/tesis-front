@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ClienteFormStyles.css';
 
-const API_URL_CLIENTES = 'http://localhost:3000/clientes';
-const API_URL_MESAS = 'http://localhost:3000/mesas';
+const API_URL_CLIENTES = 'https://tesis-back-production-8e0c.up.railway.app/clientes';
+const API_URL_MESAS = 'https://tesis-back-production-8e0c.up.railway.app/mesas';
 
 interface Cliente {
   nombre: string;

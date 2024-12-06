@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // URL base del backend
-const BASE_URL = 'http://localhost:3000/productos';
+const BASE_URL = 'https://tesis-back-production-8e0c.up.railway.app/productos';
 
 // Define la interfaz para un producto
 export interface Producto {

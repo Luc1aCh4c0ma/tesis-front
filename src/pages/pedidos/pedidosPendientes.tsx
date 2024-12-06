@@ -27,7 +27,7 @@ const DetallePedido: React.FC = () => {
     const fetchDetallePedido = async () => {
       try {
         setError(null);
-        const response = await axios.get(`http://localhost:3000/pedidos/detalle/${pedidoId}`);
+        const response = await axios.get(`https://tesis-back-production-8e0c.up.railway.app/pedidos/detalle/${pedidoId}`);
         console.log("Datos del pedido:", response.data); // Depuración
         setPedido(response.data);
       } catch (error) {
