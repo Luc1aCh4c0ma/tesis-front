@@ -58,14 +58,7 @@ const AppRoutes = () => {
 
 
         {/* Rutas protegidas */}
-        <Route
-          path="/dashboard-admin"
-          element={
-            <ProtectedRoute allowedRoles={['admin']}>
-              <DashboardAdmin />
-            </ProtectedRoute>
-          }
-        />
+        
         <Route
           path="/dashboard-user"
           element={
