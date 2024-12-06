@@ -122,6 +122,16 @@ button[type="submit"]:hover {
     text-decoration: underline; /* Subrayar en hover */
 }
 
+.cliente-button {
+    background-color: #d6c7a9;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: center;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .auth-form {

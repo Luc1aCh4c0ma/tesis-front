@@ -12,7 +12,7 @@ interface CarritoProps {
 }
 
 const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
-  const { resumen, eliminarItem } = useResumen();
+  const { resumen, eliminarItem, resetearResumen } = useResumen(); // Agregamos resetearResumen
   const [carritoAbierto, setCarritoAbierto] = useState(false);
   const [metodoPago, setMetodoPago] = useState("efectivo");
   const [modalAbierto, setModalAbierto] = useState(false);
@@ -56,7 +56,8 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
 
   const handleCloseModal = () => {
     setModalAbierto(false);
-    setCarritoAbierto(false);
+    resetearResumen(); // Resetea el contenido del carrito
+    setCarritoAbierto(false); // Minimiza el carrito
   };
 
   return (

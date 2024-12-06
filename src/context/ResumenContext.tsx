@@ -12,6 +12,7 @@ interface ResumenContextType {
   resumen: { [key: number]: Item };
   agregarItem: (item: Item) => void;
   eliminarItem: (id: number) => void;
+  resetearResumen: () => void; // Nueva función para resetear el carrito
 }
 
 const ResumenContext = createContext<ResumenContextType | undefined>(undefined);
@@ -55,8 +56,15 @@ export const ResumenProvider: React.FC<{ children: ReactNode }> = ({ children })
     });
   };
 
+  // Nueva función para resetear el carrito
+  const resetearResumen = () => {
+    setResumen({});
+  };
+
   return (
-    <ResumenContext.Provider value={{ resumen, agregarItem, eliminarItem }}>
+    <ResumenContext.Provider
+      value={{ resumen, agregarItem, eliminarItem, resetearResumen }}
+    >
       {children}
     </ResumenContext.Provider>
   );
