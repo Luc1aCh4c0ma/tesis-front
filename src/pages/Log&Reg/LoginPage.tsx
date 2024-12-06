@@ -47,6 +47,10 @@ const LoginPage: React.FC = () => {
     }
   };
 
+  const handleSoyCliente = () => {
+    navigate('/clients'); // Redirige a la página de productos
+  };
+
   return (
     <div className="auth-container">
       <div className="logo-container">
@@ -85,7 +89,7 @@ const LoginPage: React.FC = () => {
           <a href="/register">¿No tienes una cuenta? Regístrate</a>
         </div>
       </form>
-      <button className='cliente-button'>Soy Cliente</button>
+      <button className='cliente-button' onClick={handleSoyCliente}>Soy Cliente</button>
     </div>
   );
 };
