@@ -62,60 +62,87 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
 
   return (
     <Box>
-      {/* Botón para abrir el carrito */}
-      <button
-        className="carrito-toggle-button"
-        onClick={toggleCarrito}
+      {/* Botón flotante con el ícono del carrito */}
+      <div>
+        <IconButton className="carrito-icon-button" onClick={toggleCarrito}>
+          <Badge badgeContent={Object.values(resumen).length} color="error">
+            <ShoppingCartIcon fontSize="large" />
+          </Badge>
+        </IconButton>
+      </div>
+
+      {/* Contenido del carrito */}
+      {carritoAbierto && (
+        <Box className="carrito-contenido">
+          <Typography variant="h6" className="carrito-titulo">
+            🛒 Carrito de Compras
+          </Typography>
+          {Object.values(resumen).length > 0 ? (
+            <>
+              <ul className="carrito-items-lista">
+                {Object.values(resumen).map((item) => (
+                  <li key={item.id} className="carrito-item">
+                    <div>
+                      <strong>{item.nombre}</strong> x {item.cantidad}
+                    </div>
+                    <div className="carrito-item-precio">
+                      ${(item.cantidad * item.precio).toFixed(2)}
+                      <IconButton
+                        onClick={() => eliminarItem(item.id)}
+                        className="carrito-eliminar-button"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Total y confirmación */}
+              <Typography variant="h6" className="carrito-total">
+                Total: ${calcularTotal().toFixed(2)}
+              </Typography>
+              <Button
+                onClick={handleConfirmarPedido}
+                className="carrito-confirmar-button"
+              >
+                Confirmar Pedido 🛍
+              </Button>
+            </>
+          ) : (
+            <Typography>Tu carrito está vacío. 😞</Typography>
+          )}
+        </Box>
+      )}
+
+      {/* Modal del carrito */}
+      <Modal
+        open={modalAbierto}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
       >
-        <Badge badgeContent={Object.values(resumen).length} color="error">
-          <ShoppingCartIcon />
-        </Badge>
-      </button>
-  
-      {/* Contenedor del carrito como barra inferior */}
-      <Box className={`carrito-contenido ${carritoAbierto ? "abierto" : ""}`}>
-        <Typography variant="h6" className="carrito-titulo">
-          🛒 Carrito de Compras
-        </Typography>
-        {Object.values(resumen).length > 0 ? (
-          <>
-            <ul className="carrito-items-lista">
-              {Object.values(resumen).map((item) => (
-                <li key={item.id} className="carrito-item">
-                  <div>
-                    <strong>{item.nombre}</strong> x {item.cantidad}
-                  </div>
-                  <div className="carrito-item-precio">
-                    ${(item.cantidad * item.precio).toFixed(2)}
-                    <IconButton
-                      onClick={() => eliminarItem(item.id)}
-                      className="carrito-eliminar-button"
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </div>
-                </li>
-              ))}
-            </ul>
-  
-            {/* Total y confirmación */}
-            <Typography variant="h6" className="carrito-total">
-              Total: ${calcularTotal().toFixed(2)}
-            </Typography>
-            <Button
-              onClick={handleConfirmarPedido}
-              className="carrito-confirmar-button"
-            >
-              Confirmar Pedido 🛍
-            </Button>
-          </>
-        ) : (
-          <Typography>Tu carrito está vacío. 😞</Typography>
-        )}
-      </Box>
+        <Box className="carrito-modal">
+          <Typography variant="h5" id="modal-title" gutterBottom>
+            ¡Pedido Confirmado! 🎉
+          </Typography>
+          <Typography id="modal-description" paragraph>
+            Total a pagar: <strong>${calcularTotal().toFixed(2)}</strong>
+          </Typography>
+          <Typography paragraph>
+            Método de pago: <strong>{metodoPago}</strong>
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={handleCloseModal}
+            className="carrito-cerrar-button"
+          >
+            Cerrar 🛑
+          </Button>
+        </Box>
+      </Modal>
     </Box>
   );
-  
 };
 
 export default Carrito;
