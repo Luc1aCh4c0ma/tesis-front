@@ -18,7 +18,7 @@ const DashboardAdmin: React.FC = () => {
   // Función para obtener las mesas del backend
   const fetchMesas = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/mesas'); // Cambia la URL según tu backend
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/mesas`); // Cambia la URL según tu backend
       setMesas(response.data);
     } catch (error) {
       console.error('Error al cargar las mesas:', error);
@@ -28,7 +28,7 @@ const DashboardAdmin: React.FC = () => {
   // Función para alternar disponibilidad de una mesa
   const toggleAvailability = async (id: number, isAvailable: boolean) => {
     try {
-      await axios.patch(`http://localhost:3000/mesas/${id}`, {
+      await axios.patch(`${process.env.REACT_APP_API_URL}/mesas${id}`, {
         isAvailable: !isAvailable,
       });
       fetchMesas(); // Refresca las mesas después de cambiar el estado
