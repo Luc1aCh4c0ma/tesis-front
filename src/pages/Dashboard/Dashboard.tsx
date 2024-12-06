@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import tableIconAvailable from 'D:/login_register/auth-frontend/src/assets/mesa.png';
-import tableIconOccupied from 'D:/login_register/auth-frontend/src/assets/mesa_ocupada2.png';
-import iconUser from 'D:/login_register/auth-frontend/src/assets/user.png';
+import tableIconAvailable from '../../assets/mesa.png';
+import tableIconOccupied from '../../assets/mesa_ocupada2.png';
+import iconUser from '../../assets/user.png';
 import './DashboardAdmin.css';
 import Navbar from '../../components/NavBar/NavBar';
 
