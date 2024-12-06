@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './AuthForm.css';
-import logo from 'D:/login_register/auth-frontend/src/assets/logososneado2.png'; // Asegúrate de usar la ruta correcta a tu logo  
+import logo from '../../assets/logososneado.png'; // Asegúrate de usar la ruta correcta a tu logo  
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaUserAstronaut } from "react-icons/fa";

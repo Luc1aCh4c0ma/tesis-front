@@ -4,7 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
 import './AuthForm.css';
-import logo from 'D:/login_register/auth-frontend/src/assets/logososneado2.png'; // Asegúrate de usar la ruta correcta a tu logo  
+import logo from '../../assets/logososneado.png';
+ // Asegúrate de usar la ruta correcta a tu logo  
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaUserSecret } from "react-icons/fa6";
