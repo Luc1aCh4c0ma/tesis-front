@@ -22,18 +22,12 @@
   letter-spacing: 1.2px;
 }
 
-/* Lista de productos (Para el carrusel, se reemplaza por react-slick) */
+/* Lista de productos */
 .productos-lista {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 25px;
-}
-
-/* Carrusel de productos */
-.productos-carrusel .slick-slide {
-  display: flex !important;
-  justify-content: center;
 }
 
 /* Cada producto individual */
@@ -135,59 +129,30 @@
   opacity: 1;
 }
 
-/* Contenedor para el carrusel de productos */
-.productos-carrusel {
-  margin: 20px auto;
-  max-width: 1200px;
-}
-
-/* Estilo de las flechas del carrusel */
-.productos-carrusel .slick-prev,
-.productos-carrusel .slick-next {
-  font-size: 20px;
-  z-index: 1;
-  color: #2c3e50;
-}
-
-.productos-carrusel .slick-prev:hover,
-.productos-carrusel .slick-next:hover {
-  color: #16a085;
-}
-
-/* Estilo de los puntos del carrusel */
-.productos-carrusel .slick-dots li button:before {
-  font-size: 12px;
-  color: #bdc3c7;
-}
-
-.productos-carrusel .slick-dots li.slick-active button:before {
-  color: #16a085;
-}
-
 /* Transiciones y diseño responsivo */
 @media (max-width: 768px) {
   .productos-lista {
-    gap: 15px;
+      gap: 15px;
   }
 
   .producto-item {
-    width: 180px;
+      width: 180px;
   }
 
   .producto-imagen {
-    height: 120px;
+      height: 120px;
   }
 
   .producto-nombre {
-    font-size: 16px;
+      font-size: 16px;
   }
 
   .producto-precio {
-    font-size: 14px;
+      font-size: 14px;
   }
 
   .producto-boton {
-    padding: 8px 15px;
-    font-size: 13px;
+      padding: 8px 15px;
+      font-size: 13px;
   }
 }
