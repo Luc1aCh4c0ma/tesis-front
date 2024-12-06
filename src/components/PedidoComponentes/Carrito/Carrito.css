@@ -1,46 +1,90 @@
 /* Contenedor del carrito */
 .carrito-contenido {
-    position: fixed; /* Siempre visible en la pantalla */
-    top: 100px; /* Alineado con la barra de navegación */
-    right: 20px; /* Pegado al borde derecho */
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra flotante */
-    border-radius: 8px;
-    width: 300px; /* Tamaño del carrito */
+    position: fixed;
+    bottom: 0; /* Se coloca en la parte inferior */
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    background-color: #fff; /* Fondo blanco */
+    padding: 10px 20px;
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2); /* Sombra hacia arriba */
+    border-top: 1px solid #ddd;
     z-index: 3000; /* Asegura visibilidad */
-    max-height: calc(100vh - 120px); /* No ocupa toda la pantalla */
-    overflow-y: auto; /* Scroll si el contenido es demasiado */
     display: flex;
     flex-direction: column;
+    max-height: 50%; /* Altura máxima para evitar que ocupe demasiado espacio */
+    overflow-y: auto; /* Habilita scroll si hay muchos elementos */
+}
+
+/* Botón fijo para abrir el carrito */
+.carrito-fixed-button {
+    position: fixed;
+    bottom: 70px; /* Espaciado desde el contenedor principal del carrito */
+    right: 20px;
+    background-color: #1e90ff; /* Azul claro */
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacarlo */
+    cursor: pointer;
+    z-index: 3100; /* Por encima del carrito */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.carrito-fixed-button:hover {
+    background-color: #4682b4; /* Azul más oscuro */
+    transform: scale(1.1); /* Efecto de zoom */
+}
+
+.carrito-fixed-text {
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 /* Lista de items en el carrito */
-.carrito-contenido ul {
+.carrito-items-lista {
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1; /* Deja que la lista ocupe el espacio restante */
 }
 
-.carrito-contenido li {
+.carrito-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-.carrito-contenido li strong {
+.carrito-item strong {
     font-weight: bold;
 }
 
-/* Botón de confirmar pedido */
+/* Botón para eliminar items */
+.carrito-eliminar-button {
+    color: #f44336; /* Rojo */
+    transition: transform 0.2s ease;
+}
+
+.carrito-eliminar-button:hover {
+    transform: scale(1.1);
+}
+
+/* Total y botón de confirmar pedido */
+.carrito-total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
 .carrito-confirmar-button {
-    position: sticky; /* Siempre visible al final */
-    bottom: 10px; /* Espaciado interno */
-    width: 100%; /* Botón ocupa todo el ancho del carrito */
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     background-color: #1e90ff; /* Azul claro */
@@ -49,18 +93,18 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
     box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacarlo */
-    margin-top: 10px; /* Espaciado del contenido superior */
 }
 
 .carrito-confirmar-button:hover {
-    background-color: #4682b4; /* Azul más oscuro al pasar el cursor */
+    background-color: #4682b4; /* Azul más oscuro */
     transform: translateY(-2px);
 }
 
 /* Modal de confirmación */
 .carrito-modal {
-    position: fixed; /* Siempre visible */
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -86,25 +130,40 @@
     font-weight: bold;
 }
 
+/* Fondo oscuro para el modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3500;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
 /* Ajustes responsivos */
 @media (max-width: 768px) {
     .carrito-contenido {
-        width: 90%; /* Ajusta el tamaño en tablets */
-        right: 5%;
-        top: 80px; /* Ajuste de posición */
-        max-height: calc(100vh - 100px);
+        padding: 10px;
+    }
+
+    .carrito-confirmar-button {
+        font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
     .carrito-contenido {
-        width: 100%; /* Ocupa todo el ancho en móviles */
-        right: 0;
-        top: 70px;
-        max-height: calc(100vh - 90px);
+        max-height: 40%;
+        padding: 8px;
     }
 
     .carrito-confirmar-button {
-        font-size: 14px;
+        font-size: 12px;
     }
 }
