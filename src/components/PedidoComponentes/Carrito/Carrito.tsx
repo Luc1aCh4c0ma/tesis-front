@@ -62,13 +62,12 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
 
   return (
     <Box>
-      {/* Botón flotante con el ícono del carrito */}
-      <div>
-        <IconButton className="carrito-icon-button" onClick={toggleCarrito}>
-          <Badge badgeContent={Object.values(resumen).length} color="error">
-            <ShoppingCartIcon fontSize="large" />
-          </Badge>
-        </IconButton>
+      {/* Botón fijo en la parte inferior */}
+      <div className="carrito-fixed-button" onClick={toggleCarrito}>
+        <Badge badgeContent={Object.values(resumen).length} color="error">
+          <ShoppingCartIcon fontSize="medium" />
+        </Badge>
+        <span className="carrito-fixed-text">Mi Pedido 🛒</span>
       </div>
 
       {/* Contenido del carrito */}

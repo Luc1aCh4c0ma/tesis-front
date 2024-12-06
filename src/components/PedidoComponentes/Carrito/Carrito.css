@@ -2,21 +2,29 @@
 .carrito-icon-button {
     position: fixed;
     bottom: 20px; /* Pegado al borde inferior */
-    right: -650px; /* Pegado al borde derecho */
+    right: 20px; /* Pegado al borde derecho */
     background-color: #A39986;
     color: #fff;
-    border-radius: 50%; /* Botón circular */
-    padding: 10px;
+    border-radius: 30px; /* Botón con bordes redondeados */
+    padding: 10px 20px;
     z-index: 4000; /* Asegúrate de que esté por encima de otros elementos */
-    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .carrito-icon-button:hover {
     background-color: #8D7F6F;
+    transform: scale(1.05);
 }
 
 .carrito-icon {
-    font-size: 1.8rem; /* Tamaño ajustado al ícono */
+    font-size: 1.5rem; /* Tamaño ajustado al ícono */
 }
 
 /* Contenido del carrito */
@@ -97,11 +105,12 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .carrito-confirmar-button:hover {
     background-color: #155a9d;
+    transform: translateY(-2px);
 }
 
 /* Botón de cerrar modal */
@@ -113,11 +122,12 @@
     border-radius: 8px;
     margin-top: 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .carrito-cerrar-button:hover {
     background-color: #8D7F6F;
+    transform: translateY(-2px);
 }
 
 /* Ajustes responsivos */
@@ -138,6 +148,7 @@
     .carrito-icon-button {
         bottom: 10px;
         right: 10px;
+        font-size: 14px;
     }
 
     .carrito-contenido {
