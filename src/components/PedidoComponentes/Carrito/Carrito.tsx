@@ -67,7 +67,7 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         <Badge badgeContent={Object.values(resumen).length} color="error">
           <ShoppingCartIcon fontSize="medium" />
         </Badge>
-        <span className="carrito-fixed-text">Mi Pedido 🛒</span>
+        <span className="carrito-fixed-text">Mi Pedido</span>
       </div>
 
       {/* Contenido del carrito */}

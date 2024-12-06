@@ -1,36 +1,7 @@
-/* Botón flotante del carrito */
-.carrito-icon-button {
-    position: fixed;
-    bottom: 20px; /* Pegado al borde inferior */
-    right: 20px; /* Pegado al borde derecho */
-    background-color: #A39986;
-    color: #fff;
-    border-radius: 30px; /* Botón con bordes redondeados */
-    padding: 10px 20px;
-    z-index: 4000; /* Asegúrate de que esté por encima de otros elementos */
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.carrito-icon-button:hover {
-    background-color: #8D7F6F;
-    transform: scale(1.05);
-}
-
-.carrito-icon {
-    font-size: 1.5rem; /* Tamaño ajustado al ícono */
-}
-
-/* Contenido del carrito */
+/* Contenedor del carrito */
 .carrito-contenido {
     position: fixed;
-    bottom: 80px; /* Justo encima del botón del carrito */
+    bottom: 80px; /* Justo encima del botón flotante */
     right: 20px; /* Alineado a la derecha */
     background-color: #fff;
     padding: 20px;
@@ -39,13 +10,17 @@
     width: 300px;
     z-index: 3000; /* Asegura visibilidad */
     max-height: 400px;
-    overflow-y: auto;
+    overflow-y: auto; /* Habilita el scroll si hay demasiados elementos */
+    display: flex;
+    flex-direction: column;
 }
 
+/* Lista de items en el carrito */
 .carrito-contenido ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-grow: 1; /* Deja que la lista ocupe el espacio restante */
 }
 
 .carrito-contenido li {
@@ -61,10 +36,26 @@
     font-weight: bold;
 }
 
-.carrito-eliminar-item {
-    color: red;
-    padding: 5px;
+/* Botón de confirmar pedido */
+.carrito-confirmar-button {
+    position: sticky; /* Siempre visible al final */
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacarlo */
+    margin-top: 10px; /* Espaciado del contenido superior */
+}
+
+.carrito-confirmar-button:hover {
+    background-color: #155a9d;
+    transform: translateY(-2px);
 }
 
 /* Modal de confirmación */
@@ -97,46 +88,28 @@
 
 /* Botón de confirmar pedido */
 .carrito-confirmar-button {
+    position: sticky; /* Siempre visible al final */
+    bottom: 0;
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    background-color: #1976d2;
+    background-color: #1e90ff; /* Azul claro */
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacarlo */
+    margin-top: 10px; /* Espaciado del contenido superior */
 }
 
 .carrito-confirmar-button:hover {
-    background-color: #155a9d;
-    transform: translateY(-2px);
-}
-
-/* Botón de cerrar modal */
-.carrito-cerrar-button {
-    padding: 10px;
-    background-color: #A39986;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    margin-top: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.carrito-cerrar-button:hover {
-    background-color: #8D7F6F;
+    background-color: #4682b4; /* Azul más oscuro al pasar el cursor */
     transform: translateY(-2px);
 }
 
 /* Ajustes responsivos */
 @media (max-width: 768px) {
-    .carrito-icon-button {
-        bottom: 15px;
-        right: 15px;
-    }
-
     .carrito-contenido {
         width: 90%;
         right: 5%;
@@ -145,12 +118,6 @@
 }
 
 @media (max-width: 480px) {
-    .carrito-icon-button {
-        bottom: 10px;
-        right: 10px;
-        font-size: 14px;
-    }
-
     .carrito-contenido {
         width: 100%;
         right: 0;
