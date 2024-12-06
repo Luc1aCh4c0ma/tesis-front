@@ -48,7 +48,13 @@ const AppRoutes = () => {
         <Route path="/ventas" element={<Ventas />} />
         <Route path="/clients" element={<ClienteForm onMetodoPagoSeleccionado={handleMetodoPagoSeleccionado} />} />
         <Route path="/menu" element={<RealizarPedido />} />
-        <Route path="/dashboard-admin" element={<DashboardAdmin />} />
+        <Route path="/colabora" element={<ColaboraConNosotros />} />
+        <Route path="/desarrolladoras" element={<Desarrolladoras />} />
+        <Route path="/quienes-somos" element={<QuienesSomos/>} />
+
+
+
+        
 
 
 
@@ -124,30 +130,6 @@ const AppRoutes = () => {
           }
         />
 
-       <Route
-          path="/colabora"
-          element={
-            <ProtectedRoute allowedRoles={['admin', 'user']}>
-              <ColaboraConNosotros />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/desarrolladoras"
-          element={
-            <ProtectedRoute allowedRoles={['admin', 'user']}>
-              <Desarrolladoras />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/quienes-somos"
-          element={
-            <ProtectedRoute allowedRoles={['admin', 'user']}>
-              <QuienesSomos />
-            </ProtectedRoute>
-          }
-        />
 
         <Route
           path="/historial"

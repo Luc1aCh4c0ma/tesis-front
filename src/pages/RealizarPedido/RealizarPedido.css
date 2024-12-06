@@ -84,7 +84,7 @@
 
 /* Estilo para el carrito flotante */
 .carrito-icon-button {
-  position: fixed;
+  position: right;
   bottom: 20px;
   right: 20px;
   background-color: #a39986;
