@@ -124,8 +124,9 @@ button[type="submit"]:hover {
 
 .cliente-button {
     background-color: #d6c7a9;
-    border: none;
+    border: 1px;
     padding: 10px 20px;
+    margin-top: 5px;
     font-size: 1rem;
     cursor: pointer;
     border-radius: 8px;
