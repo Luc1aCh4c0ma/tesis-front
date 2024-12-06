@@ -43,7 +43,7 @@
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    background-color: #1976d2;
+    background-color: #1e90ff; /* Azul claro */
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -54,7 +54,7 @@
 }
 
 .carrito-confirmar-button:hover {
-    background-color: #155a9d;
+    background-color: #4682b4; /* Azul más oscuro al pasar el cursor */
     transform: translateY(-2px);
 }
 
@@ -84,28 +84,6 @@
 
 .carrito-modal strong {
     font-weight: bold;
-}
-
-/* Botón de confirmar pedido */
-.carrito-confirmar-button {
-    position: sticky; /* Siempre visible al final */
-    bottom: 0;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #1e90ff; /* Azul claro */
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacarlo */
-    margin-top: 10px; /* Espaciado del contenido superior */
-}
-
-.carrito-confirmar-button:hover {
-    background-color: #4682b4; /* Azul más oscuro al pasar el cursor */
-    transform: translateY(-2px);
 }
 
 /* Ajustes responsivos */
