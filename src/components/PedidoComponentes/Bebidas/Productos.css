@@ -1,170 +1,86 @@
-/* Contenedor principal de los productos */
-.productos-container {
+/* Contenedor principal */
+.comidas-container {
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f4f4f9;
+  background-color: #f9f9f9;
   border-radius: 12px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Título general de las categorías de productos */
-.productos-titulo {
+.comidas-titulo {
   font-size: 28px;
-  color: #2c3e50;
+  color: #34495e;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
+  margin-bottom: 20px;
 }
 
-/* Estilo del carrusel */
-.productos-carrusel {
-  margin: 20px auto;
-  max-width: 1200px;
-  overflow: hidden;
+/* Carrusel */
+.comidas-carrusel .slick-slide {
+  display: flex !important;
+  justify-content: center;
 }
 
-/* Estilo de las flechas del carrusel */
-.productos-carrusel .slick-prev,
-.productos-carrusel .slick-next {
-  font-size: 20px;
-  z-index: 1;
-  color: #2c3e50;
-  opacity: 0.7;
-}
-
-.productos-carrusel .slick-prev:hover,
-.productos-carrusel .slick-next:hover {
-  color: #16a085;
-  opacity: 1;
-}
-
-/* Estilo de los puntos del carrusel */
-.productos-carrusel .slick-dots li button:before {
-  font-size: 12px;
-  color: #bdc3c7;
-}
-
-.productos-carrusel .slick-dots li.slick-active button:before {
-  color: #16a085;
-}
-
-/* Cada producto individual */
-.producto-item {
+/* Elementos del carrusel */
+.comidas-item {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 15px;
   border-radius: 15px;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-  width: 220px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  cursor: pointer;
 }
 
-/* Efecto hover para cada producto */
-.producto-item:hover {
-  transform: scale(1.07);
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Imagen del producto */
-.producto-imagen {
+.comidas-imagen {
   width: 100%;
-  height: 150px;
+  max-height: 200px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  transition: transform 0.3s ease;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-.producto-item:hover .producto-imagen {
-  transform: scale(1.05);
-}
-
-/* Detalles del producto: nombre, precio y descripción */
-.producto-detalles {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Nombre del producto */
-.producto-nombre {
-  font-weight: bold;
+.comidas-nombre {
   font-size: 18px;
-  color: #34495e;
-  margin-bottom: 8px;
-  text-transform: capitalize;
-  text-align: center;
-  line-height: 1.4;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 5px;
 }
 
-/* Precio del producto */
-.producto-precio {
+.comidas-precio {
   font-size: 16px;
   color: #16a085;
   font-weight: bold;
-  margin-bottom: 12px;
 }
 
-/* Botón para añadir al carrito */
-.producto-boton {
-  padding: 10px 20px;
-  background-color: #2fbc34;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s, transform 0.2s ease;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-}
-
-.producto-boton:hover {
-  background-color: #39e13e;
-  transform: translateY(-2px);
-}
-
-/* Descripción del producto */
-.producto-descripcion {
+.comidas-descripcion {
   font-size: 14px;
   color: #7f8c8d;
-  background-color: #ecf0f1;
-  padding: 10px;
-  border-radius: 8px;
-  margin-top: 10px;
-  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
+  margin-top: 5px;
 }
 
-/* Mostrar la descripción al pasar el cursor sobre el producto */
-.producto-item:hover .producto-descripcion {
-  max-height: 100px;
-  opacity: 1;
+/* Modal */
+.comidas-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-/* Estilo táctil para pantallas móviles */
-@media (max-width: 768px) {
-  .producto-item {
-    width: 90%; /* Ocupa casi todo el ancho en móviles */
-    margin: 0 auto; /* Centra el elemento */
-  }
-
-  .producto-imagen {
-    height: 150px;
-  }
-
-  .productos-carrusel {
-    overflow: visible; /* Asegura que el contenido táctil no se oculte */
-  }
+.comidas-modal-imagen {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }

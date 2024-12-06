@@ -1,80 +1,134 @@
 import React, { useEffect, useState } from "react";
-import { useResumen } from "../../../context/ResumenContext";
-import { obtenerProductos, Producto } from "../../../service/productosService";
-import Slider from "react-slick";
-import "../Bebidas/Productos.css";
+import { Box, Typography, Modal, Paper, IconButton } from "@mui/material";
+import { Close as CloseIcon } from "@mui/icons-material";
+import Slider from "react-slick"; // Importamos react-slick
+import "./Comidas.css"; // Archivo CSS específico
+
+interface Producto {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imagen: string;
+  disponible:boolean;
+}
 
 const Comidas: React.FC = () => {
   const [comidas, setComidas] = useState<Producto[]>([]);
-  const { agregarItem } = useResumen();
+  const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchComidas = async () => {
-      try {
-        const categoriaId = 2; // ID para la categoría "Comidas"
-        const productos = await obtenerProductos(categoriaId);
-        // Filtramos solo las comidas disponibles
-        const comidasDisponibles = productos.filter((comida) => comida.disponible);
-        setComidas(comidasDisponibles);
-      } catch (error) {
-        console.error("Error al cargar las comidas:", error);
-      }
-    };
-    fetchComidas();
+    fetch("https://tu-backend-url.com/comidas") // Cambia por tu URL del backend
+      .then((response) => response.json())
+      .then((data: Producto[]) => {
+        setComidas(data.filter((comida) => comida.disponible)); // Filtrar solo productos disponibles
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error al cargar las comidas:", err);
+        setError("Error al cargar las comidas.");
+        setLoading(false);
+      });
   }, []);
+
+  const handleClose = () => {
+    setProductoSeleccionado(null);
+  };
 
   const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
     swipe: true, // Habilita el deslizamiento táctil
-    touchMove: true, // Permite movimiento táctil
-    responsive: [
-      {
-        breakpoint: 768, // Móvil
-        settings: {
-          slidesToShow: 1, // Un producto por pantalla
-        },
-      },
-      {
-        breakpoint: 1024, // Tablet
-        settings: {
-          slidesToShow: 2, // Dos productos por pantalla
-        },
-      },
-    ],
   };
 
   return (
-    <div className="productos-container">
-      <h2 className="productos-titulo">🍕 Comidas 🍔</h2>
-      <Slider {...sliderSettings} className="productos-carrusel">
-        {comidas.map((comida) => (
-          <div key={comida.id} className="producto-item">
-            <img
-              src={comida.imagen}
-              alt={comida.nombre}
-              className="producto-imagen"
-            />
-            <div className="producto-detalles">
-              <span className="producto-nombre">{comida.nombre}</span>
-              <span className="producto-precio">${comida.precio.toFixed(2)}</span>
-              <button
-                className="producto-boton"
-                onClick={() => agregarItem({ ...comida, cantidad: 1 })}
+    <Box className="comidas-container">
+      <Typography variant="h5" className="comidas-titulo">
+        🍕 Comidas Disponibles 🍔
+      </Typography>
+
+      {loading && (
+        <Typography variant="body1" className="comidas-loading">
+          Cargando comidas...
+        </Typography>
+      )}
+
+      {error && (
+        <Typography variant="body1" className="comidas-error">
+          {error}
+        </Typography>
+      )}
+
+      {!loading && !error && (
+        <Slider {...sliderSettings} className="comidas-carrusel">
+          {comidas.map((comida) => (
+            <Box
+              key={comida.id}
+              className="comidas-item"
+              onClick={() => setProductoSeleccionado(comida)}
+            >
+              <img
+                src={comida.imagen}
+                alt={comida.nombre}
+                className="comidas-imagen"
+              />
+              <Typography className="comidas-nombre">{comida.nombre}</Typography>
+              <Typography className="comidas-precio">
+                ${comida.precio.toFixed(2)}
+              </Typography>
+              <Typography className="comidas-descripcion">
+                {comida.descripcion.substring(0, 40)}...
+              </Typography>
+            </Box>
+          ))}
+        </Slider>
+      )}
+
+      <Modal open={!!productoSeleccionado} onClose={handleClose}>
+        <Box className="comidas-modal">
+          {productoSeleccionado && (
+            <Paper elevation={3} style={{ padding: "20px", textAlign: "center" }}>
+              <img
+                src={productoSeleccionado.imagen}
+                alt={productoSeleccionado.nombre}
+                className="comidas-modal-imagen"
+              />
+              <Typography variant="h5">{productoSeleccionado.nombre}</Typography>
+              <Typography variant="body1">
+                ${productoSeleccionado.precio.toFixed(2)}
+              </Typography>
+              <Typography
+                variant="body2"
+                style={{ marginTop: "10px", fontStyle: "italic" }}
               >
-                Añadir al carrito 🛒
-              </button>
-              <div className="producto-descripcion">
-                <p>{comida.descripcion}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
+                {productoSeleccionado.descripcion}
+              </Typography>
+              <IconButton
+                onClick={handleClose}
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  backgroundColor: "#ff4d4f",
+                  color: "#fff",
+                  borderRadius: "50%",
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Paper>
+          )}
+        </Box>
+      </Modal>
+    </Box>
   );
 };
 
