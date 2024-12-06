@@ -1,0 +1,62 @@
+/* ClienteFormStyles.css */
+.cliente-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #e9dec4;
+  }
+  
+  .cliente-form h1,
+  .cliente-form h2 {
+    text-align: center;
+    color: #000000;
+  }
+  
+  .cliente-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #000000;
+  }
+  
+  .cliente-form input,
+  .cliente-form select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .cliente-form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cliente-form button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
+  .cliente-form button:hover:not(:disabled) {
+    background-color: #878787;
+  }
+  
+  .cliente-form p {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+  }
+  

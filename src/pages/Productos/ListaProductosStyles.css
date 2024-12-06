@@ -1,0 +1,94 @@
+.productos-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f2e1c1; 
+
+  }
+  
+  .productos-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .productos-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .productos-search {
+    width: 70%;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .productos-filter {
+    width: 25%;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .productos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .productos-table th,
+  .productos-table td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .productos-table th {
+    background-color: #0b0b0b;
+    color: #f2e1c1;
+  }
+  
+  .productos-image {
+    width: 50px;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .productos-edit-btn,
+  .productos-delete-btn {
+    padding: 8px 12px;
+    margin: 0 4px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .productos-edit-btn {
+    background-color: #222222;
+    color: white;
+  }
+  
+  .productos-delete-btn {
+    background-color: #222222;
+    color: white;
+  }
+  
+  .productos-empty {
+    text-align: center;
+    color: #666;
+  }
+  
+  .productos-create-btn {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  
+  .productos-create-btn:hover {
+    background-color: #515151;
+  }
+  

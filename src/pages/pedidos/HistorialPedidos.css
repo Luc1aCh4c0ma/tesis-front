@@ -1,0 +1,141 @@
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 30px auto; /* Aumentar margen superior e inferior */
+    padding: 20px;
+    background-color: #e9dec4; /* Fondo claro */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Encabezado */
+  h4 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #000000;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Espaciado entre letras */
+    border-bottom: 2px solid #000000; /* Línea decorativa */
+    padding-bottom: 10px;
+  }
+  
+  /* Filtro de fecha */
+  .filter-container {
+    display: flex;
+    justify-content: flex-start; /* Alineación a la izquierda */
+    align-items: center;
+    margin-bottom: 30px; /* Espacio suficiente debajo del título */
+  }
+  
+  .filter-container .MuiTextField-root {
+    width: 100%;
+    max-width: 300px; /* Limitar ancho del filtro */
+    margin-left: 20px; /* Margen desde el borde izquierdo */
+    margin-top: 20px;
+  }
+  
+  /* Mensajes de estado vacío */
+  .empty-state {
+    color: #757575;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+  
+  /* Tarjetas */
+  .card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex; /* Flex para dividir contenido e iconos */
+    justify-content: space-between; /* Contenido a la izquierda, iconos a la derecha */
+    align-items: center; /* Centrar contenido verticalmente */
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 5px solid #000000; /* Borde decorativo */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Efecto de elevación */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Incrementar la sombra */
+  }
+  
+  /* Contenido de las tarjetas */
+  .card-content {
+    flex: 1; /* El contenido ocupa el espacio restante */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left; /* Alineación del contenido a la izquierda */
+  }
+  
+  .card-content .MuiTypography-root {
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  /* Contenedor de los iconos */
+  .mt-2 {
+    display: flex;
+    justify-content: space-between; /* Espaciado uniforme entre los iconos */
+    align-items: center;
+    gap: 15px; /* Espaciado entre iconos */
+    margin-top: 20px;
+  }
+  
+  .card-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .action-icons-container {
+    display: flex;
+    gap: 10px; /* Espaciado entre los botones */
+  }
+  
+  .action-icons {
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: 20px;
+  }
+  
+  /* Iconos */
+  .action-icons {
+    font-size: 1.8rem; /* Tamaño ligeramente mayor para mejor visibilidad */
+    color: #1976d2;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .action-icons:hover {
+    transform: scale(1.2); /* Aumenta el tamaño al pasar el cursor */
+  }
+  
+  /* Iconos específicos */
+  .whatsapp-icon {
+    color: #25d366; /* Verde de WhatsApp */
+  }
+  
+  .email-icon {
+    color: #ff9800; /* Naranja */
+  }
+  
+  .download-icon {
+    color: #43a047; /* Verde para descargar */
+  }
+  
+  /* Espaciados */
+  .mt-4 {
+    margin-top: 32px;
+  }
+  
+  .mb-2 {
+    margin-bottom: 16px;
+  }
+  
+  .mb-4 {
+    margin-bottom: 32px;
+  }

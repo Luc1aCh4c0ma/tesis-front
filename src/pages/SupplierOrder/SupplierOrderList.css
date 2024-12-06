@@ -1,0 +1,88 @@
+/* Contenedor principal */
+.supplier-order-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 25px;
+  background-color: #e9dec4;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Título */
+.supplier-order-title {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Botón de crear pedido */
+.supplier-order-create-button {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.supplier-order-create-button:hover {
+  background-color: #737373;
+}
+
+/* Lista de pedidos */
+.supplier-order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Elemento de la lista */
+.supplier-order-item {
+  padding: 15px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Descripción del pedido */
+.supplier-order-description {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Total del pedido */
+.supplier-order-total {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Estado del pedido */
+.supplier-order-status {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Botón de marcar como recibido */
+.supplier-order-received-button {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.supplier-order-received-button:hover {
+  background-color: #218838;
+}

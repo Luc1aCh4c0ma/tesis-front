@@ -1,0 +1,132 @@
+/* Navbar.css */
+
+/* Estilo del contenedor principal del header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5px;
+  background-color: #e8dbb6; /* Fondo beige */
+  color: rgb(0, 0, 0);
+  position: fixed; /* Flotante */
+  top: 5px;
+  left: 10px;
+  width: 98%; /* Ocupa todo el ancho */
+  z-index: 1000; /* Asegura que esté por encima del contenido */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para el efecto de flotación */
+  height: 80px;
+  border-radius: 20px; /* Bordes redondeados en la parte inferior */
+}
+
+
+/* Estilo del logo */
+.logo-img {
+  height: 60px;
+}
+
+.logo-img2 {
+  height: 80px;
+}
+
+/* Botón del menú hamburguesa */
+.menu-button {
+  padding-right: 50px;/* Asegura que esté por encima del contenido */
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+/* Barra lateral oculta por defecto */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Fuera de la pantalla */
+  width: 280px;
+  height: 100%;
+  background-color: #e8dbb6;
+  color: rgb(0, 0, 0);
+  box-shadow: -4px 0 6px rgba(0, 0, 0, 0.3); /* Sombra más definida */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  transition: right 0.4s ease-in-out; /* Transición más fluida */
+  z-index: 101; /* Asegura que el sidebar esté encima del overlay */
+}
+
+/* Barra lateral visible */
+.sidebar.open {
+  right: 0; /* Mueve el sidebar dentro de la pantalla */
+}
+
+/* Estilo de los botones dentro del sidebar */
+.sidebar button {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Transición en el hover */
+}
+
+.sidebar button:hover {
+  color: #8b5e3c; /* Cambia a un tono marrón */
+}
+
+/* Fondo oscuro */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100; /* Debajo del sidebar */
+  display: none; /* Oculto inicialmente */
+  transition: opacity 0.3s ease; /* Transición en la opacidad */
+}
+
+/* Muestra el fondo oscuro cuando el menú está abierto */
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Espaciado para evitar que el contenido quede cubierto por el navbar */
+body {
+  margin-top: 70px; /* Ajusta según la altura del navbar */
+}
+
+/* Mejora de la experiencia de usuario */
+body.no-scroll {
+  overflow: hidden; /* Desactiva el scroll cuando el menú está abierto */
+}
+
+.manual-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.manual-options {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.manual-options button {
+  background-color: #e8dbb6;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+
+}
+
+

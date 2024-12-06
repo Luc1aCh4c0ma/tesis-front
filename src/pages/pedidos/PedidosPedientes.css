@@ -1,0 +1,75 @@
+/* Contenedor principal */
+.pedidos-pendientes-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  .pedidos-pendientes-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Estado vacío */
+  .pedidos-pendientes-empty-state {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    margin-top: 40px;
+  }
+  
+  /* Card de pedido */
+  .pedidos-pendientes-card {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+  }
+  
+  .pedidos-pendientes-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Detalles del pedido */
+  .pedido-id {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .pedido-total {
+    color: #27ae60;
+    font-weight: bold;
+  }
+  
+  .pedido-estado {
+    color: #e67e22;
+    font-style: italic;
+  }
+  
+  /* Botones */
+  .pedidos-pendientes-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .pedidos-pendientes-view-details {
+    color: #2980b9;
+    border-color: #2980b9;
+  }
+  
+  .pedidos-pendientes-mark-delivered {
+    background-color: #27ae60;
+    color: white;
+  }
+  
+  .pedidos-pendientes-mark-delivered:hover {
+    background-color: #1e8449;
+  }
+  

@@ -1,0 +1,71 @@
+.producto-form-container {
+    max-width: 525px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e9dec4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    border: 1px solid #000000;
+
+  }
+  
+  .producto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 40px;
+    
+  }
+  
+  .producto-form-title {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .producto-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .producto-form-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #000000;
+  }
+  
+  .producto-form-input,
+  .producto-form-select,
+  .producto-form-textarea,
+  .producto-form-input-file {
+    padding: 8px;
+    font-size: 14px;
+    padding-left: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+  
+  .producto-form-input:focus,
+  .producto-form-select:focus,
+  .producto-form-textarea:focus {
+    outline: none;
+    border-color: #000000;
+  }
+  
+  .producto-form-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .producto-form-button:hover {
+    background-color: #0056b3;
+  }
+  
