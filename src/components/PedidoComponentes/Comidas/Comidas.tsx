@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useResumen } from "../../../context/ResumenContext";
 import { obtenerProductos, Producto } from "../../../service/productosService";
+import Slider from "react-slick";
 import "../Bebidas/Productos.css";
 
 const Comidas: React.FC = () => {
@@ -13,7 +14,7 @@ const Comidas: React.FC = () => {
         const categoriaId = 2; // ID para la categoría "Comidas"
         const productos = await obtenerProductos(categoriaId);
         // Filtramos solo las comidas disponibles
-        const comidasDisponibles = productos.filter(comida => comida.disponible);
+        const comidasDisponibles = productos.filter((comida) => comida.disponible);
         setComidas(comidasDisponibles);
       } catch (error) {
         console.error("Error al cargar las comidas:", error);
@@ -22,10 +23,34 @@ const Comidas: React.FC = () => {
     fetchComidas();
   }, []);
 
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    swipe: true, // Habilita el deslizamiento táctil
+    touchMove: true, // Permite movimiento táctil
+    responsive: [
+      {
+        breakpoint: 768, // Móvil
+        settings: {
+          slidesToShow: 1, // Un producto por pantalla
+        },
+      },
+      {
+        breakpoint: 1024, // Tablet
+        settings: {
+          slidesToShow: 2, // Dos productos por pantalla
+        },
+      },
+    ],
+  };
+
   return (
     <div className="productos-container">
       <h2 className="productos-titulo">🍕 Comidas 🍔</h2>
-      <div className="productos-lista">
+      <Slider {...sliderSettings} className="productos-carrusel">
         {comidas.map((comida) => (
           <div key={comida.id} className="producto-item">
             <img
@@ -48,7 +73,7 @@ const Comidas: React.FC = () => {
             </div>
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };
