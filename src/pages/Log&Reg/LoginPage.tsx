@@ -83,6 +83,7 @@ const LoginPage: React.FC = () => {
         <div className="auth-links">
     
           <a href="/register">¿No tienes una cuenta? Regístrate</a>
+          <a href="/clients">Soy Cliente</a>
         </div>
       </form>
     </div>
