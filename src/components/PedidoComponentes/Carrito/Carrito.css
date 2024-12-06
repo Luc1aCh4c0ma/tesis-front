@@ -1,15 +1,15 @@
 /* Contenedor del carrito */
 .carrito-contenido {
     position: fixed;
-    bottom: 80px; /* Justo encima del botón flotante */
-    right: 20px; /* Alineado a la derecha */
+    top: 100px; /* Más adelante, como la navbar */
+    right: 20px; /* Pegado al borde derecho */
     background-color: #fff;
     padding: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     width: 300px;
     z-index: 3000; /* Asegura visibilidad */
-    max-height: 400px;
+    max-height: calc(100vh - 120px); /* Altura dinámica según la pantalla */
     overflow-y: auto; /* Habilita el scroll si hay demasiados elementos */
     display: flex;
     flex-direction: column;
@@ -39,8 +39,8 @@
 /* Botón de confirmar pedido */
 .carrito-confirmar-button {
     position: sticky; /* Siempre visible al final */
-    bottom: 0;
-    width: 100%;
+    bottom: 10px; /* Espaciado desde el final del contenedor */
+    width: calc(100% - 20px); /* Mantiene margen interno */
     padding: 10px;
     font-size: 16px;
     background-color: #1e90ff; /* Azul claro */
@@ -91,7 +91,8 @@
     .carrito-contenido {
         width: 90%;
         right: 5%;
-        bottom: 70px;
+        top: 80px;
+        max-height: calc(100vh - 100px);
     }
 }
 
@@ -99,7 +100,8 @@
     .carrito-contenido {
         width: 100%;
         right: 0;
-        bottom: 60px;
+        top: 70px;
+        max-height: calc(100vh - 90px);
     }
 
     .carrito-confirmar-button {
