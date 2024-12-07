@@ -48,16 +48,18 @@ const Carrito: React.FC<CarritoProps> = ({ metodoPago, onPedidoConfirmado }) => 
       total: calcularTotal(),
       metodoPago, // Usamos la prop directamente
     };
-
+  
     try {
       await axios.post("https://tesis-back-production-8e0c.up.railway.app/pedidos", pedido);
       onPedidoConfirmado(pedido);
+      setCarritoAbierto(false); // Cierra el carrito inmediatamente
       setNotificacionPedidoAbierta(true);
     } catch (error) {
       console.error("Error al confirmar el pedido:", error);
       alert("No se pudo confirmar el pedido.");
     }
   };
+  
 
   const handleCerrarNotificacionPedido = () => {
     resetearResumen(); // Resetea el carrito
