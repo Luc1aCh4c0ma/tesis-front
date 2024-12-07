@@ -39,6 +39,7 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
 
   const handleConfirmarPedido = async () => {
     const pedido = {
+      id: Math.floor(Math.random()*1000000),
       items: Object.values(resumen).map((item) => ({
         nombre: item.nombre,
         cantidad: item.cantidad,
