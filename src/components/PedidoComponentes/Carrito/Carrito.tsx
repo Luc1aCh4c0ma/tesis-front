@@ -14,10 +14,10 @@ interface CarritoProps {
 }
 
 const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
-  const { resumen, eliminarItem, agregarItem } = useResumen(); // Incluimos agregarItem para actualizar la cantidad
+  const { resumen, eliminarItem, agregarItem } = useResumen();
   const [carritoAbierto, setCarritoAbierto] = useState(false);
-  const [metodoPago, setMetodoPago] = useState("efectivo");
   const [modalAbierto, setModalAbierto] = useState(false);
+  const [notificacionAbierta, setNotificacionAbierta] = useState(false); // Estado para la notificación
 
   const toggleCarrito = () => setCarritoAbierto(!carritoAbierto);
 
@@ -28,6 +28,15 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
     );
   };
 
+  const handleAgregarProducto = (producto: any) => {
+    agregarItem(producto);
+    setNotificacionAbierta(true); // Abre la notificación
+  };
+
+  const handleCerrarNotificacion = () => {
+    setNotificacionAbierta(false); // Cierra la notificación
+  };
+
   const handleConfirmarPedido = async () => {
     const pedido = {
       items: Object.values(resumen).map((item) => ({
@@ -36,7 +45,7 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         precio: item.precio,
       })),
       total: calcularTotal(),
-      metodoPago,
+      metodoPago: "efectivo",
       estado: "pendiente",
     };
 
@@ -46,16 +55,11 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         pedido
       );
       onPedidoConfirmado(response.data); // Confirma el pedido
-      setModalAbierto(true); // Abre un modal de confirmación
+      setModalAbierto(true); // Abre el modal de confirmación
     } catch (error) {
       console.error("Error al confirmar el pedido:", error);
       alert("No se pudo confirmar el pedido.");
     }
-  };
-
-  const handleCloseModal = () => {
-    setModalAbierto(false);
-    setCarritoAbierto(false);
   };
 
   const handleActualizarCantidad = (id: number, delta: number) => {
@@ -134,30 +138,32 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         </Box>
       )}
 
-      {/* Modal del carrito */}
+      {/* Modal de notificación */}
       <Modal
-        open={modalAbierto}
-        onClose={handleCloseModal}
+        open={notificacionAbierta}
+        onClose={handleCerrarNotificacion}
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
       >
         <Box className="carrito-modal">
-          <Typography variant="h5" id="modal-title" gutterBottom>
-            ¡Pedido Confirmado! 🎉
+          <Typography variant="h6" id="modal-title">
+            ¡Producto agregado al carrito! 🎉
           </Typography>
-          <Typography id="modal-description" paragraph>
-            Total a pagar: <strong>${calcularTotal().toFixed(2)}</strong>
-          </Typography>
-          <Typography paragraph>
-            Método de pago: <strong>{metodoPago}</strong>
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={handleCloseModal}
-            className="carrito-cerrar-button"
-          >
-            Cerrar 🛑
-          </Button>
+          <Box display="flex" justifyContent="space-around" marginTop="20px">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                setCarritoAbierto(true);
+                handleCerrarNotificacion();
+              }}
+            >
+              Ver Carrito
+            </Button>
+            <Button variant="outlined" color="secondary" onClick={handleCerrarNotificacion}>
+              Seguir Comprando
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </Box>
