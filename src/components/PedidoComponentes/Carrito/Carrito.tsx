@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IconButton, Badge, Box, Modal, Typography, Button } from "@mui/material";
+import { IconButton, Badge, Box, Modal, Typography, Button, Select, MenuItem } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -9,15 +9,15 @@ import { useResumen } from "../../../context/ResumenContext";
 import axios from "axios";
 
 interface CarritoProps {
-  metodoPago: string;
-  onPedidoConfirmado: (pedido: { id: number; items: any; total: number }) => void;
+  onPedidoConfirmado: (pedido: { id: number; items: any; total: number; metodoPago: string }) => void;
 }
 
 const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
-  const { resumen, eliminarItem, agregarItem } = useResumen();
+  const { resumen, eliminarItem, agregarItem, resetearResumen } = useResumen(); // Agregamos resetearResumen
   const [carritoAbierto, setCarritoAbierto] = useState(false);
-  const [notificacionProductoAbierta, setNotificacionProductoAbierta] = useState(false); // Estado para la notificación de producto agregado
-  const [notificacionPedidoAbierta, setNotificacionPedidoAbierta] = useState(false); // Estado para la notificación de pedido confirmado
+  const [notificacionProductoAbierta, setNotificacionProductoAbierta] = useState(false);
+  const [notificacionPedidoAbierta, setNotificacionPedidoAbierta] = useState(false);
+  const [metodoPago, setMetodoPago] = useState("efectivo");
 
   const toggleCarrito = () => setCarritoAbierto(!carritoAbierto);
 
@@ -30,7 +30,7 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
 
   const handleAgregarProducto = (producto: any) => {
     agregarItem(producto);
-    setNotificacionProductoAbierta(true); // Mostrar la notificación modal de producto agregado
+    setNotificacionProductoAbierta(true);
   };
 
   const handleCerrarNotificacionProducto = () => {
@@ -39,21 +39,20 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
 
   const handleConfirmarPedido = async () => {
     const pedido = {
-      id: Math.floor(Math.random()*1000000),
+      id: Math.floor(Math.random() * 1000000),
       items: Object.values(resumen).map((item) => ({
         nombre: item.nombre,
         cantidad: item.cantidad,
         precio: item.precio,
       })),
       total: calcularTotal(),
-      metodoPago: "efectivo",
-      estado: "pendiente",
+      metodoPago,
     };
 
     try {
       await axios.post("https://tesis-back-production-8e0c.up.railway.app/pedidos", pedido);
-      onPedidoConfirmado(pedido); // Confirma el pedido
-      setNotificacionPedidoAbierta(true); // Mostrar la notificación modal de pedido confirmado
+      onPedidoConfirmado(pedido);
+      setNotificacionPedidoAbierta(true);
     } catch (error) {
       console.error("Error al confirmar el pedido:", error);
       alert("No se pudo confirmar el pedido.");
@@ -61,7 +60,9 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
   };
 
   const handleCerrarNotificacionPedido = () => {
+    resetearResumen(); // Resetea el carrito
     setNotificacionPedidoAbierta(false);
+    setCarritoAbierto(false); // Cierra el carrito
   };
 
   return (
@@ -115,6 +116,21 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
                 ))}
               </ul>
 
+              {/* Selección del método de pago */}
+              <Typography variant="body1" className="metodo-pago-label">
+                Método de Pago:
+              </Typography>
+              <Select
+                value={metodoPago}
+                onChange={(e) => setMetodoPago(e.target.value)}
+                className="metodo-pago-select"
+                fullWidth
+              >
+                <MenuItem value="efectivo">Efectivo</MenuItem>
+                <MenuItem value="tarjeta">Tarjeta</MenuItem>
+                <MenuItem value="transferencia">Transferencia</MenuItem>
+              </Select>
+
               {/* Total y confirmación */}
               <Typography variant="h6" className="carrito-total">
                 Total: ${calcularTotal().toFixed(2)}
@@ -134,12 +150,9 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         open={notificacionProductoAbierta}
         onClose={handleCerrarNotificacionProducto}
         aria-labelledby="modal-notificacion-producto-title"
-        aria-describedby="modal-notificacion-producto-description"
       >
         <Box className="carrito-modal">
-          <Typography variant="h6" id="modal-notificacion-producto-title">
-            ¡Producto agregado al carrito! 🎉
-          </Typography>
+          <Typography variant="h6">¡Producto agregado al carrito! 🎉</Typography>
           <Box display="flex" justifyContent="space-around" marginTop="20px">
             <Button
               variant="contained"
@@ -163,13 +176,10 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         open={notificacionPedidoAbierta}
         onClose={handleCerrarNotificacionPedido}
         aria-labelledby="modal-notificacion-pedido-title"
-        aria-describedby="modal-notificacion-pedido-description"
       >
         <Box className="carrito-modal">
-          <Typography variant="h5" id="modal-notificacion-pedido-title" gutterBottom>
-            ¡Pedido Confirmado! 🎉
-          </Typography>
-          <Typography id="modal-notificacion-pedido-description" paragraph>
+          <Typography variant="h5">¡Pedido Confirmado! 🎉</Typography>
+          <Typography paragraph>
             Tu pedido se ha realizado correctamente. ¡Gracias por tu compra! 🛒
           </Typography>
           <Button
