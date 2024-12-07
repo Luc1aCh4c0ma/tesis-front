@@ -147,21 +147,20 @@
     transform: scale(1.2);
 }
 
-/* Modal de notificación */
+/* Modal de notificación de producto agregado */
 .carrito-modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    z-index: 5000; /* Muy por encima */
     width: 90%;
     max-width: 400px;
     text-align: center;
+    z-index: 5000;
 }
 
 .carrito-modal h6,
@@ -174,20 +173,6 @@
     margin: 10px 0;
 }
 
-.carrito-modal .carrito-cerrar-button {
-    background-color: #1976d2;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.carrito-modal .carrito-cerrar-button:hover {
-    background-color: #155a9d;
-}
-
 .carrito-modal button {
     margin: 10px;
     padding: 10px;
@@ -195,20 +180,43 @@
     font-weight: bold;
 }
 
-/* Responsivo */
+.carrito-modal .carrito-cerrar-button {
+    background-color: #1976d2; /* Azul */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.carrito-modal .carrito-cerrar-button:hover {
+    background-color: #155a9d; /* Azul más oscuro */
+}
+
+/* Ajustes responsivos */
 @media (max-width: 768px) {
+    .carrito-icon-button {
+        bottom: 15px;
+        right: 15px;
+    }
+
     .carrito-contenido {
         width: 90%;
         right: 5%;
         bottom: 70px;
     }
+}
+
+@media (max-width: 480px) {
+    .carrito-icon-button {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .carrito-contenido {
+        width: 100%;
+        right: 0;
+        bottom: 60px;
+    }
 
     .carrito-confirmar-button {
         font-size: 14px;
-    }
-
-    .carrito-modal {
-        width: 100%;
-        max-width: 320px;
     }
 }
