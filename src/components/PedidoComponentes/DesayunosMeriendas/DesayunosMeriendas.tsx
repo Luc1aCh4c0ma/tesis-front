@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { Box, Modal, Typography, Button } from "@mui/material";
 import "../Bebidas/Productos.css";
 import { useResumen } from "../../../context/ResumenContext";
 import { obtenerProductos, Producto } from "../../../service/productosService";
 
-
-
 const DesayunosMeriendas: React.FC = () => {
   const [desayunos, setDesayunos] = useState<Producto[]>([]);
   const { agregarItem } = useResumen();
+  const [notificacionAbierta, setNotificacionAbierta] = useState(false);
+  const [productoAgregado, setProductoAgregado] = useState<Producto | null>(null);
 
   useEffect(() => {
     const fetchDesayunos = async () => {
       try {
         const categoriaId = 3; // ID de la categoría "Desayunos y Meriendas"
         const productos = await obtenerProductos(categoriaId);
-        
-        // Filtrar productos disponibles
         const productosDisponibles = productos.filter(producto => producto.disponible);
         setDesayunos(productosDisponibles);
       } catch (error) {
@@ -24,6 +23,17 @@ const DesayunosMeriendas: React.FC = () => {
     };
     fetchDesayunos();
   }, []);
+
+  const handleAgregarAlCarrito = (producto: Producto) => {
+    agregarItem({ ...producto, cantidad: 1 });
+    setProductoAgregado(producto);
+    setNotificacionAbierta(true);
+  };
+
+  const handleCerrarNotificacion = () => {
+    setNotificacionAbierta(false);
+    setProductoAgregado(null);
+  };
 
   return (
     <div className="productos-container">
@@ -41,7 +51,7 @@ const DesayunosMeriendas: React.FC = () => {
               <span className="producto-precio">${desayuno.precio.toFixed(2)}</span>
               <button
                 className="producto-boton"
-                onClick={() => agregarItem({ ...desayuno, cantidad: 1 })}
+                onClick={() => handleAgregarAlCarrito(desayuno)}
               >
                 Añadir al carrito 🛒
               </button>
@@ -52,6 +62,33 @@ const DesayunosMeriendas: React.FC = () => {
           </div>
         ))}
       </div>
+
+      {/* Modal de notificación */}
+      <Modal
+        open={notificacionAbierta}
+        onClose={handleCerrarNotificacion}
+        aria-labelledby="modal-notificacion-producto-title"
+      >
+        <Box className="modal-contenedor">
+          <Typography variant="h6">
+            ¡Producto agregado al carrito! 🎉
+          </Typography>
+          {productoAgregado && (
+            <Typography>
+              {productoAgregado.nombre} ha sido añadido al carrito.
+            </Typography>
+          )}
+          <Box display="flex" justifyContent="space-around" marginTop="20px">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleCerrarNotificacion}
+            >
+              Seguir Comprando
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </div>
   );
 };
