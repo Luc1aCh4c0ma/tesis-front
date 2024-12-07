@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { IconButton, Badge, Box, Typography, Button } from "@mui/material";
+import { IconButton, Badge, Box, Modal, Typography, Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import "./Carrito.css";
+import "./Carrito.css"; // Archivo CSS para los estilos
 import { useResumen } from "../../../context/ResumenContext";
 import axios from "axios";
 
@@ -15,9 +15,11 @@ interface CarritoProps {
 
 const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
   const { resumen, eliminarItem, agregarItem } = useResumen(); // Incluimos agregarItem para actualizar la cantidad
-  const [pedidoAbierto, setPedidoAbierto] = useState(false); // Estado para mostrar/ocultar el carrito
+  const [carritoAbierto, setCarritoAbierto] = useState(false);
+  const [metodoPago, setMetodoPago] = useState("efectivo");
+  const [modalAbierto, setModalAbierto] = useState(false);
 
-  const togglePedido = () => setPedidoAbierto(!pedidoAbierto);
+  const toggleCarrito = () => setCarritoAbierto(!carritoAbierto);
 
   const calcularTotal = () => {
     return Object.values(resumen).reduce(
@@ -34,7 +36,7 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         precio: item.precio,
       })),
       total: calcularTotal(),
-      metodoPago: "efectivo",
+      metodoPago,
       estado: "pendiente",
     };
 
@@ -44,11 +46,16 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         pedido
       );
       onPedidoConfirmado(response.data); // Confirma el pedido
-      togglePedido(); // Minimiza el carrito
+      setModalAbierto(true); // Abre un modal de confirmación
     } catch (error) {
       console.error("Error al confirmar el pedido:", error);
       alert("No se pudo confirmar el pedido.");
     }
+  };
+
+  const handleCloseModal = () => {
+    setModalAbierto(false);
+    setCarritoAbierto(false);
   };
 
   const handleActualizarCantidad = (id: number, delta: number) => {
@@ -62,27 +69,27 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
 
   return (
     <Box>
-      {/* Botón fijo en la parte inferior */}
-      <div className="pedido-boton" onClick={togglePedido}>
-        <Badge badgeContent={Object.values(resumen).length} color="error">
-          <Typography variant="button" className="pedido-texto">
-            Tu Pedido 🛒 - ${calcularTotal().toFixed(2)}
-          </Typography>
-        </Badge>
+      {/* Botón flotante con el ícono del carrito */}
+      <div>
+        <IconButton className="carrito-icon-button" onClick={toggleCarrito}>
+          <Badge badgeContent={Object.values(resumen).length} color="error">
+            <ShoppingCartIcon fontSize="large" />
+          </Badge>
+        </IconButton>
       </div>
 
-      {/* Contenido del pedido desplegable */}
-      {pedidoAbierto && (
-        <Box className="pedido-contenido">
-          <Typography variant="h6" className="pedido-titulo">
-            🛒 Resumen del Pedido
+      {/* Contenido del carrito */}
+      {carritoAbierto && (
+        <Box className="carrito-contenido">
+          <Typography variant="h6" className="carrito-titulo">
+            🛒 Carrito de Compras
           </Typography>
           {Object.values(resumen).length > 0 ? (
             <>
-              <ul className="pedido-items-lista">
+              <ul className="carrito-items-lista">
                 {Object.values(resumen).map((item) => (
-                  <li key={item.id} className="pedido-item">
-                    <div className="pedido-item-detalles">
+                  <li key={item.id} className="carrito-item">
+                    <div className="carrito-item-detalles">
                       <strong>{item.nombre}</strong>
                       <div className="cantidad-control">
                         <IconButton
@@ -100,11 +107,11 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
                         </IconButton>
                       </div>
                     </div>
-                    <div className="pedido-item-precio">
+                    <div className="carrito-item-precio">
                       ${(item.cantidad * item.precio).toFixed(2)}
                       <IconButton
                         onClick={() => eliminarItem(item.id)}
-                        className="pedido-eliminar-button"
+                        className="carrito-eliminar-button"
                       >
                         <DeleteIcon />
                       </IconButton>
@@ -112,7 +119,12 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
                   </li>
                 ))}
               </ul>
-              <Button onClick={handleConfirmarPedido} className="pedido-confirmar-button">
+
+              {/* Total y confirmación */}
+              <Typography variant="h6" className="carrito-total">
+                Total: ${calcularTotal().toFixed(2)}
+              </Typography>
+              <Button onClick={handleConfirmarPedido} className="carrito-confirmar-button">
                 Confirmar Pedido 🛍
               </Button>
             </>
@@ -121,6 +133,33 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
           )}
         </Box>
       )}
+
+      {/* Modal del carrito */}
+      <Modal
+        open={modalAbierto}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <Box className="carrito-modal">
+          <Typography variant="h5" id="modal-title" gutterBottom>
+            ¡Pedido Confirmado! 🎉
+          </Typography>
+          <Typography id="modal-description" paragraph>
+            Total a pagar: <strong>${calcularTotal().toFixed(2)}</strong>
+          </Typography>
+          <Typography paragraph>
+            Método de pago: <strong>{metodoPago}</strong>
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={handleCloseModal}
+            className="carrito-cerrar-button"
+          >
+            Cerrar 🛑
+          </Button>
+        </Box>
+      </Modal>
     </Box>
   );
 };
