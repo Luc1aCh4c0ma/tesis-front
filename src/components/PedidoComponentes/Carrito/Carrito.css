@@ -120,6 +120,18 @@
     background-color: #8D7F6F;
 }
 
+.carrito-item-detalles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.carrito-cantidad-input {
+  width: 60px;
+}
+
 /* Ajustes responsivos */
 @media (max-width: 768px) {
     .carrito-icon-button {
