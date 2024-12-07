@@ -115,7 +115,7 @@
 }
 
 /* Botón de confirmar pedido */
-.carrito-confirmar-button {
+.carrito-confirmar-button-2 {
     margin-top: 15px;
     width: 100%;
     padding: 10px;
@@ -130,7 +130,7 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.carrito-confirmar-button:hover {
+.carrito-confirmar-button-2:hover {
     background-color: #5ec220; /* Azul más oscuro */
     transform: translateY(-2px);
 }

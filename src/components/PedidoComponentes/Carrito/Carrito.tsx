@@ -122,7 +122,7 @@ const Carrito: React.FC<CarritoProps> = ({ metodoPago, onPedidoConfirmado }) => 
               <Typography variant="h6" className="carrito-total">
                 Total: ${calcularTotal().toFixed(2)}
               </Typography>
-              <Button onClick={handleConfirmarPedido} className="carrito-confirmar-button">
+              <Button onClick={handleConfirmarPedido} className="carrito-confirmar-button-2">
                 Confirmar Pedido 🛍
               </Button>
             </>
