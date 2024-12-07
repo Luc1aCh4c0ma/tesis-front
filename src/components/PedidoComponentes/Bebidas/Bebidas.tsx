@@ -8,14 +8,19 @@ const Bebidas: React.FC = () => {
   const [bebidas, setBebidas] = useState<Producto[]>([]);
   const { agregarItem } = useResumen();
   const [notificacionAbierta, setNotificacionAbierta] = useState(false); // Estado para el modal
-  const [productoAgregado, setProductoAgregado] = useState<Producto | null>(null); // Producto que se acaba de agregar
+  const [productoAgregado, setProductoAgregado] = useState<Producto | null>(
+    null
+  ); // Producto que se acaba de agregar
+  
 
   useEffect(() => {
     const fetchBebidas = async () => {
       try {
         const categoriaId = 1; // ID de la categoría de Bebidas
         const productos = await obtenerProductos(categoriaId);
-        const bebidasDisponibles = productos.filter((bebida) => bebida.disponible);
+        const bebidasDisponibles = productos.filter(
+          (bebida) => bebida.disponible
+        );
         setBebidas(bebidasDisponibles);
       } catch (error) {
         console.error("Error al cargar las bebidas:", error);
@@ -48,7 +53,9 @@ const Bebidas: React.FC = () => {
             />
             <div className="producto-detalles">
               <span className="producto-nombre">{bebida.nombre}</span>
-              <span className="producto-precio">${bebida.precio.toFixed(2)}</span>
+              <span className="producto-precio">
+                ${bebida.precio.toFixed(2)}
+              </span>
               <button
                 className="producto-boton"
                 onClick={() => handleAgregarAlCarrito(bebida)}
@@ -86,6 +93,20 @@ const Bebidas: React.FC = () => {
               onClick={handleCerrarNotificacion}
             >
               Seguir Comprando
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => {
+                setNotificacionAbierta(false); // Cierra el modal
+                const carritoButton = document.querySelector(".carrito-icon-button") as HTMLButtonElement;
+                  if (carritoButton) {
+                    carritoButton.click(); // Simula un clic en el botón de carrito
+                  }
+
+              }}
+            >
+              Ver Carrito
             </Button>
           </Box>
         </Box>
