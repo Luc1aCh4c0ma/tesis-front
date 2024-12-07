@@ -63,6 +63,16 @@ const Comidas: React.FC = () => {
         ))}
       </div>
 
+      <Button
+        className="ver-carrito-boton"
+        variant="contained"
+        color="secondary"
+        href="/carrito"
+        style={{ marginTop: "20px" }}
+      >
+        Ver Carrito 🛒
+      </Button>
+
       {/* Modal de notificación */}
       <Modal
         open={notificacionAbierta}
