@@ -4,7 +4,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import "./Carrito.css"; // Archivo CSS para los estilos
+import "./Carrito.css";
 import { useResumen } from "../../../context/ResumenContext";
 import axios from "axios";
 
@@ -16,8 +16,8 @@ interface CarritoProps {
 const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
   const { resumen, eliminarItem, agregarItem } = useResumen();
   const [carritoAbierto, setCarritoAbierto] = useState(false);
-  const [modalAbierto, setModalAbierto] = useState(false);
-  const [notificacionAbierta, setNotificacionAbierta] = useState(false); // Estado para la notificación
+  const [notificacionProductoAbierta, setNotificacionProductoAbierta] = useState(false); // Estado para la notificación de producto agregado
+  const [notificacionPedidoAbierta, setNotificacionPedidoAbierta] = useState(false); // Estado para la notificación de pedido confirmado
 
   const toggleCarrito = () => setCarritoAbierto(!carritoAbierto);
 
@@ -30,11 +30,11 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
 
   const handleAgregarProducto = (producto: any) => {
     agregarItem(producto);
-    setNotificacionAbierta(true); // Abre la notificación
+    setNotificacionProductoAbierta(true); // Mostrar la notificación modal de producto agregado
   };
 
-  const handleCerrarNotificacion = () => {
-    setNotificacionAbierta(false); // Cierra la notificación
+  const handleCerrarNotificacionProducto = () => {
+    setNotificacionProductoAbierta(false);
   };
 
   const handleConfirmarPedido = async () => {
@@ -50,37 +50,27 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
     };
 
     try {
-      const response = await axios.post(
-        "https://tesis-back-production-8e0c.up.railway.app/pedidos",
-        pedido
-      );
-      onPedidoConfirmado(response.data); // Confirma el pedido
-      setModalAbierto(true); // Abre el modal de confirmación
+      await axios.post("https://tesis-back-production-8e0c.up.railway.app/pedidos", pedido);
+      onPedidoConfirmado(pedido); // Confirma el pedido
+      setNotificacionPedidoAbierta(true); // Mostrar la notificación modal de pedido confirmado
     } catch (error) {
       console.error("Error al confirmar el pedido:", error);
       alert("No se pudo confirmar el pedido.");
     }
   };
 
-  const handleActualizarCantidad = (id: number, delta: number) => {
-    const item = resumen[id];
-    const nuevaCantidad = item.cantidad + delta;
-
-    if (nuevaCantidad > 0) {
-      agregarItem({ ...item, cantidad: delta });
-    }
+  const handleCerrarNotificacionPedido = () => {
+    setNotificacionPedidoAbierta(false);
   };
 
   return (
     <Box>
-      {/* Botón flotante con el ícono del carrito */}
-      <div>
-        <IconButton className="carrito-icon-button" onClick={toggleCarrito}>
-          <Badge badgeContent={Object.values(resumen).length} color="error">
-            <ShoppingCartIcon fontSize="large" />
-          </Badge>
-        </IconButton>
-      </div>
+      {/* Botón flotante para abrir el carrito */}
+      <IconButton className="carrito-icon-button" onClick={toggleCarrito}>
+        <Badge badgeContent={Object.values(resumen).length} color="error">
+          <ShoppingCartIcon fontSize="large" />
+        </Badge>
+      </IconButton>
 
       {/* Contenido del carrito */}
       {carritoAbierto && (
@@ -97,14 +87,14 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
                       <strong>{item.nombre}</strong>
                       <div className="cantidad-control">
                         <IconButton
-                          onClick={() => handleActualizarCantidad(item.id, -1)}
+                          onClick={() => agregarItem({ ...item, cantidad: -1 })}
                           className="boton-cantidad"
                         >
                           <RemoveCircleOutlineIcon />
                         </IconButton>
                         <span className="cantidad-valor">{item.cantidad}</span>
                         <IconButton
-                          onClick={() => handleActualizarCantidad(item.id, 1)}
+                          onClick={() => agregarItem({ ...item, cantidad: 1 })}
                           className="boton-cantidad"
                         >
                           <AddCircleOutlineIcon />
@@ -138,15 +128,15 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         </Box>
       )}
 
-      {/* Modal de notificación */}
+      {/* Modal de notificación de producto agregado */}
       <Modal
-        open={notificacionAbierta}
-        onClose={handleCerrarNotificacion}
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
+        open={notificacionProductoAbierta}
+        onClose={handleCerrarNotificacionProducto}
+        aria-labelledby="modal-notificacion-producto-title"
+        aria-describedby="modal-notificacion-producto-description"
       >
         <Box className="carrito-modal">
-          <Typography variant="h6" id="modal-title">
+          <Typography variant="h6" id="modal-notificacion-producto-title">
             ¡Producto agregado al carrito! 🎉
           </Typography>
           <Box display="flex" justifyContent="space-around" marginTop="20px">
@@ -155,15 +145,40 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
               color="primary"
               onClick={() => {
                 setCarritoAbierto(true);
-                handleCerrarNotificacion();
+                handleCerrarNotificacionProducto();
               }}
             >
               Ver Carrito
             </Button>
-            <Button variant="outlined" color="secondary" onClick={handleCerrarNotificacion}>
+            <Button variant="outlined" color="secondary" onClick={handleCerrarNotificacionProducto}>
               Seguir Comprando
             </Button>
           </Box>
+        </Box>
+      </Modal>
+
+      {/* Modal de notificación de pedido confirmado */}
+      <Modal
+        open={notificacionPedidoAbierta}
+        onClose={handleCerrarNotificacionPedido}
+        aria-labelledby="modal-notificacion-pedido-title"
+        aria-describedby="modal-notificacion-pedido-description"
+      >
+        <Box className="carrito-modal">
+          <Typography variant="h5" id="modal-notificacion-pedido-title" gutterBottom>
+            ¡Pedido Confirmado! 🎉
+          </Typography>
+          <Typography id="modal-notificacion-pedido-description" paragraph>
+            Tu pedido se ha realizado correctamente. ¡Gracias por tu compra! 🛒
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleCerrarNotificacionPedido}
+            className="carrito-cerrar-button"
+          >
+            Cerrar
+          </Button>
         </Box>
       </Modal>
     </Box>

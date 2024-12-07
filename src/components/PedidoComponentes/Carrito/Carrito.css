@@ -1,8 +1,8 @@
 /* Botón flotante del carrito */
 .carrito-icon-button {
     position: fixed;
-    bottom: 20px; /* Pegado al borde inferior */
-    right: 20px; /* Pegado al borde derecho */
+    bottom: 20px;
+    right: 20px;
     background-color: #ff4d4f; /* Rojo */
     color: #fff;
     border-radius: 50%; /* Botón circular */
@@ -12,7 +12,7 @@
 }
 
 .carrito-icon-button:hover {
-    background-color: #d93636;
+    background-color: #d93636; /* Rojo más oscuro */
     transform: scale(1.1);
 }
 
@@ -32,18 +32,17 @@
     width: 300px;
     z-index: 3000; /* Asegura visibilidad */
     max-height: 60vh;
-    overflow-y: auto;
+    overflow-y: auto; /* Habilita scroll */
     display: flex;
     flex-direction: column;
 }
 
-/* Título del carrito */
 .carrito-titulo {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border-bottom: 2px dashed #ddd; /* Línea decorativa */
     padding-bottom: 10px;
 }
@@ -68,7 +67,6 @@
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
 }
 
 .carrito-item strong {
@@ -90,13 +88,13 @@
 }
 
 .boton-cantidad {
-    color: #1e90ff;
+    color: #1e90ff; /* Azul */
     cursor: pointer;
     transition: transform 0.2s ease, color 0.3s ease;
 }
 
 .boton-cantidad:hover {
-    color: #4682b4;
+    color: #4682b4; /* Azul más oscuro */
     transform: scale(1.2);
 }
 
@@ -122,7 +120,7 @@
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    background-color: #1976d2;
+    background-color: #1976d2; /* Azul */
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -133,31 +131,31 @@
 }
 
 .carrito-confirmar-button:hover {
-    background-color: #155a9d;
+    background-color: #155a9d; /* Azul más oscuro */
     transform: translateY(-2px);
 }
 
 /* Botón de eliminar item */
 .carrito-eliminar-button {
-    color: #ff4d4f;
+    color: #ff4d4f; /* Rojo */
     cursor: pointer;
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .carrito-eliminar-button:hover {
-    color: #d93636;
+    color: #d93636; /* Rojo más oscuro */
     transform: scale(1.2);
 }
 
-/* Modal de confirmación */
+/* Modal de notificación de producto agregado */
 .carrito-modal {
-    position: fixed; /* Siempre visible */
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
     width: 90%;
     max-width: 400px;
@@ -165,31 +163,31 @@
     z-index: 5000;
 }
 
-.carrito-modal h6 {
+.carrito-modal h6,
+.carrito-modal h5 {
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+}
+
+.carrito-modal p {
+    margin: 10px 0;
 }
 
 .carrito-modal button {
     margin: 10px;
-}
-
-/* Botón de cerrar modal */
-.carrito-cerrar-button {
     padding: 10px;
-    background-color: #ff4d4f;
-    color: #fff;
-    border: none;
     border-radius: 8px;
-    margin-top: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
     font-weight: bold;
 }
 
-.carrito-cerrar-button:hover {
-    background-color: #d93636;
-    transform: scale(1.1);
+.carrito-modal .carrito-cerrar-button {
+    background-color: #1976d2; /* Azul */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.carrito-modal .carrito-cerrar-button:hover {
+    background-color: #155a9d; /* Azul más oscuro */
 }
 
 /* Ajustes responsivos */
