@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { IconButton, Badge, Box, Modal, Typography, Button, TextField } from "@mui/material";
+import { IconButton, Badge, Box, Modal, Typography, Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import "./Carrito.css"; // Archivo CSS para los estilos
 import { useResumen } from "../../../context/ResumenContext";
 import axios from "axios";
@@ -56,10 +58,12 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
     setCarritoAbierto(false);
   };
 
-  const handleActualizarCantidad = (id: number, nuevaCantidad: number) => {
+  const handleActualizarCantidad = (id: number, delta: number) => {
+    const item = resumen[id];
+    const nuevaCantidad = item.cantidad + delta;
+
     if (nuevaCantidad > 0) {
-      const item = resumen[id];
-      agregarItem({ ...item, cantidad: nuevaCantidad - item.cantidad });
+      agregarItem({ ...item, cantidad: delta });
     }
   };
 
@@ -87,17 +91,20 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
                   <li key={item.id} className="carrito-item">
                     <div className="carrito-item-detalles">
                       <strong>{item.nombre}</strong>
-                      <div>
-                        <TextField
-                          type="number"
-                          value={item.cantidad}
-                          onChange={(e) =>
-                            handleActualizarCantidad(item.id, parseInt(e.target.value))
-                          }
-                          className="carrito-cantidad-input"
-                          inputProps={{ min: 1 }}
-                          size="small"
-                        />
+                      <div className="cantidad-control">
+                        <IconButton
+                          onClick={() => handleActualizarCantidad(item.id, -1)}
+                          className="boton-cantidad"
+                        >
+                          <RemoveCircleOutlineIcon />
+                        </IconButton>
+                        <span className="cantidad-valor">{item.cantidad}</span>
+                        <IconButton
+                          onClick={() => handleActualizarCantidad(item.id, 1)}
+                          className="boton-cantidad"
+                        >
+                          <AddCircleOutlineIcon />
+                        </IconButton>
                       </div>
                     </div>
                     <div className="carrito-item-precio">
