@@ -9,15 +9,15 @@ import { useResumen } from "../../../context/ResumenContext";
 import axios from "axios";
 
 interface CarritoProps {
+  metodoPago: string; // Metodo de pago pasado como prop
   onPedidoConfirmado: (pedido: { id: number; items: any; total: number; metodoPago: string }) => void;
 }
 
-const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
-  const { resumen, eliminarItem, agregarItem, resetearResumen } = useResumen(); // Agregamos resetearResumen
+const Carrito: React.FC<CarritoProps> = ({ metodoPago, onPedidoConfirmado }) => {
+  const { resumen, eliminarItem, agregarItem, resetearResumen } = useResumen();
   const [carritoAbierto, setCarritoAbierto] = useState(false);
   const [notificacionProductoAbierta, setNotificacionProductoAbierta] = useState(false);
   const [notificacionPedidoAbierta, setNotificacionPedidoAbierta] = useState(false);
-  const [metodoPago, setMetodoPago] = useState("efectivo");
 
   const toggleCarrito = () => setCarritoAbierto(!carritoAbierto);
 
@@ -46,7 +46,7 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
         precio: item.precio,
       })),
       total: calcularTotal(),
-      metodoPago,
+      metodoPago, // Usamos la prop directamente
     };
 
     try {
@@ -115,21 +115,6 @@ const Carrito: React.FC<CarritoProps> = ({ onPedidoConfirmado }) => {
                   </li>
                 ))}
               </ul>
-
-              {/* Selección del método de pago */}
-              <Typography variant="body1" className="metodo-pago-label">
-                Método de Pago:
-              </Typography>
-              <Select
-                value={metodoPago}
-                onChange={(e) => setMetodoPago(e.target.value)}
-                className="metodo-pago-select"
-                fullWidth
-              >
-                <MenuItem value="efectivo">Efectivo</MenuItem>
-                <MenuItem value="tarjeta">Tarjeta</MenuItem>
-                <MenuItem value="transferencia">Transferencia</MenuItem>
-              </Select>
 
               {/* Total y confirmación */}
               <Typography variant="h6" className="carrito-total">
