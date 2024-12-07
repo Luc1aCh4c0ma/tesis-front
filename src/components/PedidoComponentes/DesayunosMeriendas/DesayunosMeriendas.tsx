@@ -63,16 +63,6 @@ const DesayunosMeriendas: React.FC = () => {
         ))}
       </div>
 
-      <Button
-        className="ver-carrito-boton"
-        variant="contained"
-        color="secondary"
-        href="/carrito"
-        style={{ marginTop: "20px" }}
-      >
-        Ver Carrito 🛒
-      </Button>
-
       {/* Modal de notificación */}
       <Modal
         open={notificacionAbierta}
@@ -95,6 +85,20 @@ const DesayunosMeriendas: React.FC = () => {
               onClick={handleCerrarNotificacion}
             >
               Seguir Comprando
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => {
+                setNotificacionAbierta(false); // Cierra el modal
+                const carritoButton = document.querySelector(".carrito-icon-button") as HTMLButtonElement;
+                  if (carritoButton) {
+                    carritoButton.click(); // Simula un clic en el botón de carrito
+                  }
+
+              }}
+            >
+              Ver Carrito
             </Button>
           </Box>
         </Box>
