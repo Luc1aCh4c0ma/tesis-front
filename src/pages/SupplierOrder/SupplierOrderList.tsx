@@ -19,7 +19,7 @@ const SupplierOrderList = () => {
 
   const markAsReceived = async (id: number) => {
     try {
-      await fetch(`https://tesis-back-production-8e0c.up.railway.app/${id}/received`, {
+      await fetch(`https://tesis-back-production-8e0c.up.railway.app/supplier-orders/${id}/received`, {
         method: 'PATCH',
       });
       fetchOrders(); // Refrescar la lista
