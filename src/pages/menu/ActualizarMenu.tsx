@@ -44,7 +44,7 @@ const ActualizarMenu: React.FC = () => {
 
   const cambiarDisponibilidad = async (productoId: number, disponible: boolean) => {
     try {
-      const response = await axios.patch<Producto>(`https://tesis-back-production-8e0c.up.railway.app/${productoId}/disponibilidad`, {
+      const response = await axios.patch<Producto>(`https://tesis-back-production-8e0c.up.railway.app/productos/${productoId}/disponibilidad`, {
         disponible: !disponible, // Cambiamos el valor enviado
       });
 
