@@ -102,12 +102,7 @@ const DetallePedido: React.FC = () => {
         </ul>
       ) : (
         <Typography className="empty-state">No hay items en este pedido.</Typography>
-      )}
-      <Box className="mt-2">
-        <Button className="back-button" onClick={() => navigate(-1)}>
-          Volver
-        </Button>
-        
+      )} 
       </Box>
       <Box className="mt-2">
           <Button className="back-button" onClick={() => navigate(-1)}>
@@ -117,7 +112,6 @@ const DetallePedido: React.FC = () => {
             Generar Ticket
           </Button>
         </Box>
-    </Box>
     </>
   );
 };
