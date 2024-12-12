@@ -109,6 +109,14 @@ const DetallePedido: React.FC = () => {
         </Button>
         
       </Box>
+      <Box className="mt-2">
+          <Button className="back-button" onClick={() => navigate(-1)}>
+            Volver
+          </Button>
+          <Button className="generar-ticket-button" onClick={generarTicket}>
+            Generar Ticket
+          </Button>
+        </Box>
     </Box>
     </>
   );
