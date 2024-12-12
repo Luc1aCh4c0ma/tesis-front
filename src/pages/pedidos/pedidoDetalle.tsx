@@ -11,22 +11,26 @@ interface PedidoItem {
   precio: number | string; // Puede ser número o cadena de texto
 }
 
+interface Cliente {
+  nombre: string;
+  apellido: string;
+  metodoPago: string;
+  mesaId: number;
+  telefono: string;
+}
+
+interface Mesa {
+  numero: string;
+  estado: string;
+}
+
 interface Pedido {
   id: string;
   estado: string;
   total: number;
   items: PedidoItem[];
-  cliente: {
-    nombre: string;
-    apellido: string;
-    metodoPago: string;
-    mesaId: number;
-    telefono: string;
-  };
-  mesa: {
-    numero: string;
-    estado: string;
-  };
+  cliente?: Cliente; // Cliente puede ser undefined inicialmente
+  mesa?: Mesa; // Mesa también puede ser undefined
 }
 
 const DetallePedido: React.FC = () => {
@@ -98,13 +102,19 @@ const DetallePedido: React.FC = () => {
         <Typography>Estado: {pedido.estado}</Typography>
         <Typography>Total: ${calcularTotal()}</Typography>
 
-        <Typography variant="h6" gutterBottom>
-          Información del Cliente:
-        </Typography>
-        <Typography>Nombre: {pedido.cliente.nombre} {pedido.cliente.apellido}</Typography>
-        <Typography>Teléfono: {pedido.cliente.telefono}</Typography>
-        <Typography>Método de Pago: {pedido.cliente.metodoPago}</Typography>
-        <Typography>Mesa: {pedido.mesa.numero} (Estado: {pedido.mesa.estado})</Typography>
+        {pedido?.cliente ? (
+          <>
+            <Typography variant="h6" gutterBottom>
+              Información del Cliente:
+            </Typography>
+            <Typography>Nombre: {pedido.cliente.nombre} {pedido.cliente.apellido}</Typography>
+            <Typography>Teléfono: {pedido.cliente.telefono}</Typography>
+            <Typography>Método de Pago: {pedido.cliente.metodoPago}</Typography>
+            <Typography>Mesa: {pedido.mesa?.numero} (Estado: {pedido.mesa?.estado})</Typography>
+          </>
+        ) : (
+          <Typography>No hay información del cliente disponible.</Typography>
+        )}
 
         <Typography variant="h6" gutterBottom>
           Items:
