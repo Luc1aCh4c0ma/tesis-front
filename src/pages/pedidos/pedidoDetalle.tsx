@@ -11,26 +11,11 @@ interface PedidoItem {
   precio: number | string; // Puede ser número o cadena de texto
 }
 
-interface Cliente {
-  nombre: string;
-  apellido: string;
-  metodoPago: string;
-  mesaId: number;
-  telefono: string;
-}
-
-interface Mesa {
-  numero: string;
-  estado: string;
-}
-
 interface Pedido {
   id: string;
   estado: string;
   total: number;
   items: PedidoItem[];
-  cliente?: Cliente; // Cliente puede ser undefined inicialmente
-  mesa?: Mesa; // Mesa también puede ser undefined
 }
 
 const DetallePedido: React.FC = () => {
@@ -94,55 +79,37 @@ const DetallePedido: React.FC = () => {
   return (
     <>
       <Navbar />
-      <Box className="container">
-        <Typography variant="h4" gutterBottom>
-          Detalle del Pedido
-        </Typography>
-        <Typography>ID: {pedido.id}</Typography>
-        <Typography>Estado: {pedido.estado}</Typography>
-        <Typography>Total: ${calcularTotal()}</Typography>
-
-        {pedido?.cliente ? (
-          <>
-            <Typography variant="h6" gutterBottom>
-              Información del Cliente:
-            </Typography>
-            <Typography>Nombre: {pedido.cliente.nombre} {pedido.cliente.apellido}</Typography>
-            <Typography>Teléfono: {pedido.cliente.telefono}</Typography>
-            <Typography>Método de Pago: {pedido.cliente.metodoPago}</Typography>
-            <Typography>Mesa: {pedido.mesa?.numero} (Estado: {pedido.mesa?.estado})</Typography>
-          </>
-        ) : (
-          <Typography>No hay información del cliente disponible.</Typography>
-        )}
-
-        <Typography variant="h6" gutterBottom>
-          Items:
-        </Typography>
-        {pedido.items && pedido.items.length > 0 ? (
-          <ul>
-            {pedido.items.map((item, index) => {
-              const precioNumerico = parseFloat(item.precio as unknown as string) || 0;
-              return (
-                <li key={index}>
-                  {item.nombre} x {item.cantidad} - ${precioNumerico.toFixed(2)}
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <Typography className="empty-state">No hay items en este pedido.</Typography>
-        )}
-
-        <Box className="mt-2">
-          <Button className="back-button" onClick={() => navigate(-1)}>
-            Volver
-          </Button>
-          <Button className="generar-ticket-button" onClick={generarTicket}>
-            Generar Ticket
-          </Button>
-        </Box>
+    <Box className="container">
+      <Typography variant="h4" gutterBottom>
+        Detalle del Pedido
+      </Typography>
+      <Typography>ID: {pedido.id}</Typography>
+      <Typography>Estado: {pedido.estado}</Typography>
+      <Typography>Total: ${calcularTotal()}</Typography>
+      <Typography variant="h6" gutterBottom>
+        Items:
+      </Typography>
+      {pedido.items && pedido.items.length > 0 ? (
+        <ul>
+          {pedido.items.map((item, index) => {
+            const precioNumerico = parseFloat(item.precio as unknown as string) || 0;
+            return (
+              <li key={index}>
+                {item.nombre} x {item.cantidad} - ${precioNumerico.toFixed(2)}
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <Typography className="empty-state">No hay items en este pedido.</Typography>
+      )}
+      <Box className="mt-2">
+        <Button className="back-button" onClick={() => navigate(-1)}>
+          Volver
+        </Button>
+        
       </Box>
+    </Box>
     </>
   );
 };
