@@ -9,17 +9,24 @@ const PedidosPendientes: React.FC = () => {
   const [pedidos, setPedidos] = useState<any[]>([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchPedidosPendientes = async () => {
-      try {
-        const response = await axios.get("https://tesis-back-production-8e0c.up.railway.app/pedidos/pendiente");
-        setPedidos(response.data);
-      } catch (error) {
-        console.error("Error al obtener pedidos pendientes:", error);
-      }
-    };
+  const fetchPedidosPendientes = async () => {
+    try {
+      const response = await axios.get("https://tesis-back-production-8e0c.up.railway.app/pedidos/pendiente");
+      setPedidos(response.data);
+    } catch (error) {
+      console.error("Error al obtener pedidos pendientes:", error);
+    }
+  };
 
+  useEffect(() => {
+    // Fetch inicial
     fetchPedidosPendientes();
+
+    // Establecer intervalo para actualizar pedidos
+    const interval = setInterval(fetchPedidosPendientes, 10000); // Actualiza cada 10 segundos
+
+    // Limpieza del intervalo al desmontar el componente
+    return () => clearInterval(interval);
   }, []);
 
   const verDetalle = (pedidoId: number) => {
