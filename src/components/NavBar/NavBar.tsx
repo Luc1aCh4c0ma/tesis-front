@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
               <button
                 onClick={() =>
                   window.open(
-                    'https://docs.google.com/document/d/1-12pFX_cfJaed_MJuLxrIbdIq4ccUkLkVa_YE1BrrsY/export?format=pdf',
+                    'https://drive.google.com/file/d/1uZSlS_JZ3wcazeMVUwNunPPXNMT9YRIg/export?format=pdf',
                     '_blank'
                   )
                 }
@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
               <button
                 onClick={() =>
                   window.open(
-                    'https://drive.google.com/file/d/1nMrZKnV7L2RVZCxEIyIDbtdiOR1nyYPl/view?usp=sharing',
+                    'https://drive.google.com/file/d/1uZSlS_JZ3wcazeMVUwNunPPXNMT9YRIg/view?usp=sharing',
                     '_blank'
                   )
                 }
