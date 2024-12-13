@@ -26,7 +26,7 @@ const Desarrolladoras: React.FC = () => {
         Conoce a las Desarrolladoras y desarrolladores 💻✨
       </Typography>
 
-      <Typography variant="h6" paragraph>
+      <Typography variant="body1" paragraph>
         Somos un equipo de 5 estudiantes de 3er año de la carrera de Software en el Instituto Superior Arturo Umberto Illía. Decidimos embarcarnos en este proyecto porque queríamos hacer algo más que un simple trabajo de tesis. Queríamos crear una <Typography component="span" sx={{ fontWeight: 'bold' }}>herramienta real</Typography> que tuviera un impacto positivo, especialmente en una cafetería que se esfuerza por ofrecer un servicio accesible y eficiente.
       </Typography>
 
