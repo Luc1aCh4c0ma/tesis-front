@@ -51,16 +51,13 @@ const Navbar: React.FC = () => {
           </button>
           {isManualOpen && (
             <div className="manual-options">
-              <button
-                onClick={() =>
-                  window.open(
-                    'https://drive.google.com/file/d/1uZSlS_JZ3wcazeMVUwNunPPXNMT9YRIg/view?usp=sharing/export?format=pdf',
-                    '_blank'
-                  )
-                }
+            <a
+                href="https://drive.google.com/uc?export=download&id=1uZSlS_JZ3wcazeMVUwNunPPXNMT9YRIg"
+                download="ManualUsuario.pdf"
+                className="manual-button"
               >
-                  Descargar PDF
-              </button>
+                Descargar PDF
+              </a>
               <button
                 onClick={() =>
                   window.open(
