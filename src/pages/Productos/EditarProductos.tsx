@@ -64,7 +64,7 @@ const EditarProducto: React.FC = () => {
     try {
       await ProductoService.actualizarProducto(Number(id), formData);
       alert('Producto actualizado correctamente');
-      navigate('/lista-productos');
+      navigate('/products');
     } catch (error: any) {
       console.error('Error al actualizar el producto:', error);
       alert(error.response?.data?.message || 'Error al actualizar el producto.');
