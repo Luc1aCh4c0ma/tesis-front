@@ -18,7 +18,6 @@
   border-radius: 20px; /* Bordes redondeados en la parte inferior */
 }
 
-
 /* Estilo del logo */
 .logo-img {
   height: 60px;
@@ -30,7 +29,7 @@
 
 /* Botón del menú hamburguesa */
 .menu-button {
-  padding-right: 50px;/* Asegura que esté por encima del contenido */
+  padding-right: 50px; /* Asegura que esté por encima del contenido */
   background: none;
   border: none;
   font-size: 24px;
@@ -118,15 +117,24 @@ body.no-scroll {
   gap: 10px;
 }
 
+/* Botones de las opciones del manual */
 .manual-options button {
-  background-color: #e8dbb6;
-  border: none;
-  padding: 8px;
-  border-radius: 5px;
+  background-color: #f0e6d2; /* Fondo ligeramente beige */
+  border: 1px solid #d4c5a6; /* Borde suave */
+  color: #6b4e30; /* Texto marrón oscuro */
+  padding: 10px 15px;
+  border-radius: 8px; /* Bordes redondeados */
   cursor: pointer;
-  text-align: left;
-  font-size: 14px;
-
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease; /* Efecto suave */
 }
 
-
+/* Hover para los botones del manual */
+.manual-options button:hover {
+  background-color: #d4c5a6; /* Fondo más oscuro */
+  color: #ffffff; /* Texto blanco */
+  transform: scale(1.05); /* Efecto de zoom */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para resaltar */
+}
