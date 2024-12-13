@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
               <button
                 onClick={() =>
                   window.open(
-                    'https://drive.google.com/file/d/1uZSlS_JZ3wcazeMVUwNunPPXNMT9YRIg/export?format=pdf',
+                    'https://drive.google.com/file/d/1uZSlS_JZ3wcazeMVUwNunPPXNMT9YRIg/view?usp=sharing/export?format=pdf',
                     '_blank'
                   )
                 }
