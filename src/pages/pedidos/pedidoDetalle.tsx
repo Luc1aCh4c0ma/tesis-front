@@ -107,9 +107,6 @@ const DetallePedido: React.FC = () => {
         <Button className="back-button" onClick={() => navigate(-1)}>
           Volver
         </Button>
-        <Button className="generar-ticket-button" onClick={generarTicket}>
-            Generar Ticket
-          </Button>
         </Box>
     </Box>
     </>
