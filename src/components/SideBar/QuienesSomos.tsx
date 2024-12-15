@@ -62,7 +62,7 @@ const QuienesSomos: React.FC = () => {
                 objectFit: "cover", // Mantiene las proporciones sin distorsionar
               }}
             />
-            <p className="legend">🍹 Nuestra barra principal</p>
+            <p className="legend"></p>
           </div>
           <div>
             <img
@@ -75,7 +75,7 @@ const QuienesSomos: React.FC = () => {
                 objectFit: "cover", // Mantiene las proporciones sin distorsionar
               }}
             />
-            <p className="legend">🛋️ Ambiente moderno y relajado</p>
+            <p className="legend"></p>
           </div>
           <div>
             <img
@@ -88,7 +88,7 @@ const QuienesSomos: React.FC = () => {
                 objectFit: "cover", // Mantiene las proporciones sin distorsionar
               }}
             />
-            <p className="legend">🍽️ Comida y bebidas para todos los gustos</p>
+            <p className="legend"></p>
           </div>
         </Slider>
       </Box>

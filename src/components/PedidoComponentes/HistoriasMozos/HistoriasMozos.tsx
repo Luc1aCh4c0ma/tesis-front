@@ -50,7 +50,7 @@ const HistoriasMozos: React.FC = () => {
   return (
     <Box className="historias-mozos-container">
       <Typography variant="h5" className="historias-mozos-titulo">
-        Conoce a nuestros mozos 🤩
+        Conocenos 🤩:
       </Typography>
 
       {loading && (
